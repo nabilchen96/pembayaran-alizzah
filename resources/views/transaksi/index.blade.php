@@ -174,7 +174,7 @@
                 { data: 'nama_pembayar', name: 'nama_pembayar' },
                 { data: 'keterangan', name: 'keterangan' },
                 { name: 'edit', render: function(data){
-                    return '<a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>'
+                    return '<a href="{{ url("edit-transaksi") }}/'+row.id_transaksi+'" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>'
                 }},
                 {
                     data: null, name: 'cetak', render: function(data, type, row, meta){
