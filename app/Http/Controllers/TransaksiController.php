@@ -20,7 +20,7 @@ class TransaksiController extends Controller
                         ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
                         ->where('tahun_ajarans.status_aktif', 1)
                         ->select(
-                            'transaksis.tgl_transaksi', 
+                            'transaksis.tgl_transaksi',
                             'transaksis.kd_nota', 
                             'transaksis.id_transaksi', 
                             'transaksis.keterangan', 
@@ -28,6 +28,7 @@ class TransaksiController extends Controller
                             DB::raw('sum(jumlah_bayar) as total_pembayaran')
                         )
                         ->groupBy('kd_nota')
+                        ->orderBy('transaksis.tgl_transaksi', 'DESC')
                         ->get();
 
         return Datatables::of($transaksi)->make(true);

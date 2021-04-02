@@ -7,11 +7,18 @@ use App\TahunAjaran;
 use DataTables;
 use Illuminate\Support\Facades\Validator;
 use Exception;
+use DB;
 
 class TahunAjaranController extends Controller
 {
     public function json(){
-        return Datatables::of(TahunAjaran::all())->make(true);
+        $tahun = TahunAjaran::select(
+            'tahun',
+            'status_aktif',
+            DB::raw('DATE_FORMAT(tgl_mulai, "%d-%m-%Y") as tgl_mulai'),
+            DB::raw('DATE_FORMAT(tgl_akhir, "%d-%m-%Y") as tgl_akhir'),
+        )->get();
+        return Datatables::of($tahun)->make(true);
     }
 
     public function index()

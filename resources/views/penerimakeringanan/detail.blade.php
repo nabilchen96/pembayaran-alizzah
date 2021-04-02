@@ -80,7 +80,7 @@
                                 @else
                                     <td><span class="badge badge-danger">Tidak Aktif</span></td>
                                 @endif
-                                <td>{{ $item->berkas_keringanan }}</td>
+                                <td><a href="{{ asset('file_upload') }}/{{ $item->berkas_keringanan }}">Berkas Keringanan</a></td>
                                 <td>{{ $item->alasan_keringanan }}</td>
                                 <td>
                                     <form action="{{ url('editpenerimakeringanan') }}" method="GET">

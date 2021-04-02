@@ -51,7 +51,7 @@
                 <td class="col-3" style="width: 30%">{{ $nota->kd_nota }}</td>
                 <td class="col-2" style="width: 15%">TGL Transaksi</td>
                 <td class="col-1" style="width: 5%">:</td>
-                <td class="col-3" style="width: 30%">{{ $nota->tgl_transaksi }}</td>
+                <td class="col-3" style="width: 30%">{{ date('d F Y', strtotime($nota->tgl_transaksi)) }}</td>
             </tr>
         </table>
         <table class="table table-striped">
@@ -88,10 +88,10 @@
         </table>
         <table class="table" style="border-color: transparent">
             <tr class="row text-right">
-                <td style="text-align: end;" colspan="3" class="text-right">Palembang, {{$nota->tgl_transaksi}}</td>
+                <td style="text-align: end;" colspan="3" class="text-right">Palembang, {{ date('d F Y', strtotime($nota->tgl_transaksi)) }}</td>
             </tr>
             <tr class="row text-right" style="margin-top: 70px">
-                <td style="text-align: end;" colspan="3" class="text-right">( M. Nabil Putra Esa Yani)</td>
+                <td style="text-align: end;" colspan="3" class="text-right">( ............................................)</td>
             </tr>
         </table>
     </div>
