@@ -184,6 +184,38 @@ class TransaksiController extends Controller
         }
     }
 
+    public function edit($id, Request $request){
+
+        $transaksi   = DB::table('transaksis')
+                    ->Leftjoin('siswas', 'siswas.id_siswa', '=', 'transaksis.id_siswa')
+                    ->join('kelas', 'kelas.id_kelas', '=', 'transaksis.id_kelas')
+                    ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'transaksis.id_jenis_pembayaran')
+                    ->where('transaksis.kd_nota', $id)
+                    ->get();
+
+        $data       = DB::table('transaksis')
+                    ->Leftjoin('siswas', 'siswas.id_siswa', '=', 'transaksis.id_siswa')
+                    ->join('kelas', 'kelas.id_kelas', '=', 'transaksis.id_kelas')
+                    ->where('transaksis.kd_nota', $id)
+                    ->select(
+                        'siswas.nama_siswa', 
+                        'transaksis.tgl_transaksi', 
+                        'transaksis.nama_pembayar', 
+                        'kelas.kelas', 
+                        'siswas.nama_siswa', 
+                        'keterangan',
+                        'kelas.id_kelas',
+                        'kelas.jenjang',
+                        'siswas.nama_siswa',
+                        'siswas.id_siswa',
+                        'transaksis.kd_nota'
+                    )
+                    ->groupBy('transaksis.kd_nota')
+                    ->first();
+
+        return view('transaksi.edit')->with('data', $data)->with('transaksi', $transaksi);
+    }
+
     public function nota($id){
 
         $nota = DB::table('transaksis')
@@ -204,4 +236,14 @@ class TransaksiController extends Controller
             ->with('pembayaran', $pembayaran)
             ->with('nota', $nota);
     }
+
+    // public function update(Request $request){
+    //     $request->validate([
+    //         'nama_pembayar' => 'required',
+    //         'kd_nota'       => 'required',
+    //         'tgl_transaksi' => 'required',
+    //         'di_kelas'      => 'required',
+    //         'keterangan'    => 'required',
+    //     ]);
+    // }
 }

@@ -83,7 +83,8 @@ Route::get('/transaksi', 'TransaksiController@index');
 Route::get('/transaksi-json', 'TransaksiController@json');
 Route::get('/tambah-transaksi', 'TransaksiController@create');
 Route::post('/simpan-transaksi', 'TransaksiController@store');
-Route::get('/edit-transaksi', 'TransaksiController@edit');
+Route::get('/detail-transaksi/{id}', 'TransaksiController@edit');
+Route::post('/update-transaksi', 'TransaksiController@update');
 Route::get('/nota/{id}', 'TransaksiController@nota');
 
 

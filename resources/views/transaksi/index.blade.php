@@ -173,8 +173,8 @@
                 } },
                 { data: 'nama_pembayar', name: 'nama_pembayar' },
                 { data: 'keterangan', name: 'keterangan' },
-                { name: 'edit', render: function(data){
-                    return '<a href="{{ url("edit-transaksi") }}/'+row.id_transaksi+'" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>'
+                { name: 'edit', render: function(data, type, row, meta){
+                    return '<a href="{{ url("detail-transaksi") }}/'+row.kd_nota+'" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>'
                 }},
                 {
                     data: null, name: 'cetak', render: function(data, type, row, meta){
