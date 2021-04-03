@@ -34,7 +34,8 @@ class SetPembayaranKelasController extends Controller
         $request->validate([
             'id_jenis_pembayaran'   => 'required',
             'id_kelas'              => 'required',
-            'biaya'                 => 'required'
+            'biaya'                 => 'required',
+            'keterangan'            => 'required'
         ]);
         
         //memeriksa error
@@ -44,7 +45,8 @@ class SetPembayaranKelasController extends Controller
             SetPembayaranKelas::create([
                 'id_jenis_pembayaran'   => $request->input('id_jenis_pembayaran'),
                 'id_kelas'              => $request->input('id_kelas'),
-                'biaya'                 => $request->input('biaya')
+                'biaya'                 => $request->input('biaya'),
+                'keterangan'            => $request->input('keterangan')
             ]);
             
             //kembali dan memberikan pesan sukses
@@ -63,7 +65,8 @@ class SetPembayaranKelasController extends Controller
         $request->validate([
             'id_jenis_pembayaran'   => 'required',
             'id_kelas'              => 'required',
-            'biaya'                 => 'required'
+            'biaya'                 => 'required',
+            'keterangan'            => 'required'
         ]);
         
         //memeriksa error
@@ -74,7 +77,8 @@ class SetPembayaranKelasController extends Controller
             $pembayarankelas->update([
                 'id_jenis_pembayaran'   => $request->input('id_jenis_pembayaran'),
                 'id_kelas'              => $request->input('id_kelas'),
-                'biaya'                 => $request->input('biaya')
+                'biaya'                 => $request->input('biaya'),
+                'keterangan'            => $request->input('keterangan')
             ]);
             
             //kembali dan memberikan pesan sukses

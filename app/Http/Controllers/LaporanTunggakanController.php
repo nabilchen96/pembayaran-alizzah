@@ -51,7 +51,23 @@ class LaporanTunggakanController extends Controller
                                 ->first();
 
             //jumlah tunggakan
-            $transaksi      = DB::table('transaksis')
+
+            $jenis_pembayaran = DB::table('jenis_pembayarans')
+                                ->where('id_jenis_pembayaran', $request->input('id_jenis_pembayaran'))
+                                ->first();
+
+            if($jenis_pembayaran->total_pembayaran_pertahun == 1){
+                $transaksi      = DB::table('transaksis')
+                                ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
+                                ->where('id_siswa', $d->id_siswa)
+                                ->where('id_jenis_pembayaran', $request->input('id_jenis_pembayaran'))
+                                ->where('tahun_ajarans.status_aktif', 1)
+                                ->select(
+                                    DB::raw('count(transaksis.id_transaksi) as jumlah_tunggakan'),
+                                )
+                                ->first();
+            }else{
+                $transaksi      = DB::table('transaksis')
                                 ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
                                 ->where('id_siswa', $d->id_siswa)
                                 ->where('id_jenis_pembayaran', $request->input('id_jenis_pembayaran'))
@@ -60,6 +76,7 @@ class LaporanTunggakanController extends Controller
                                     DB::raw('TIMESTAMPDIFF(MONTH, "'.$tahun->tgl_mulai.'", CURRENT_DATE) - count(transaksis.id_transaksi) as jumlah_tunggakan'),
                                 )
                                 ->first();
+            }
             
             $siswa[] = array(
                 'id_siswa'          => $d->id_siswa,

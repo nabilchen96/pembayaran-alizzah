@@ -77,6 +77,10 @@
                                         <label class="col-form-label">Biaya</label>
                                         <input type="number" name="biaya" class="form-control" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-form-label">Keterangan</label>
+                                        <textarea name="keterangan" rows="3" class="form-control"></textarea>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -105,6 +109,7 @@
                                 <th>Kelas</th>
                                 <th>Jenjang</th>
                                 <th>Biaya</th>
+                                <th>Keterangan</th>
                                 <th width="10px"></th>
                                 <th width="10px"></th>
                             </tr>
@@ -115,6 +120,7 @@
                             <td>{{ $item->kelas }}</td>
                             <td>{{ $item->jenjang }}</td>
                             <td>{{ 'Rp. '.number_format($item->biaya) }}</td>
+                            <td>{{ $item->keterangan }}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#editpembayarankelas{{$item->id_set_pembayaran_kelas}}"><i class="fas fa-edit"></i></a>
                                 <div class="modal fade" id="editpembayarankelas{{$item->id_set_pembayaran_kelas}}" tabindex="-1" role="dialog"
@@ -147,6 +153,10 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Biaya</label>
                                                     <input type="number" name="biaya" class="form-control" value="{{ $item->biaya }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Keterangan</label>
+                                                    <textarea name="keterangan" rows="3" class="form-control">{{ $item->keterangan }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
