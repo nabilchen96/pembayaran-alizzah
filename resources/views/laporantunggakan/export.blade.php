@@ -25,7 +25,7 @@
             <th>NIS</th>
             <th>Nama Siswa</th>
             <th>Kelas</th>
-            <th>Total Tunggakan</th>
+            {{-- <th>Total Tunggakan</th> --}}
             <th>Total Hutang</th>
         </tr>
     </thead>
@@ -36,7 +36,7 @@
             <td>{{ @$d['nis'] }}</td>
             <td>{{ @$d['nama_siswa'] }}</td>
             <td>{{ @$d['kelas'] }}</td>
-            <td>{{ @$d['total_tunggakan'] }}</td>
+            {{-- <td>{{ @$d['total_tunggakan'] }}</td> --}}
             <td>{{ 'Rp. '.number_format(@$d['hutang_tunggakan']) }}</td>
         </tr>
     @endforeach

@@ -18,7 +18,13 @@ class SetPembayaranKelasController extends Controller
                                 ->where('jenis_pembayarans.id_jenis_pembayaran', $id)
                                 ->get();
 
-        $kelas              = Kelas::all();
+        $kelas              = DB::table('kelas')
+                                ->whereNotIn('id_kelas', function($query) use ($id){
+                                    $query->select('id_kelas')->from('set_pembayaran_kelas')->where('id_jenis_pembayaran', $id);
+                                })->get();
+
+                            
+
         $jenispembayaran    = JenisPembayaran::where('id_jenis_pembayaran', $id)->first();
 
         return view('setpembayarankelas')

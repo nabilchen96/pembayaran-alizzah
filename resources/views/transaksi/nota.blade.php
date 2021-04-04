@@ -14,11 +14,11 @@
     <div class="container">
         <table class="table" style="border-color: transparent">
             <tr class="row">
-                <td class="col-2">
+                {{-- <td class="col-2">
                     <img height="100" src="{{ asset('logologo.png') }}" alt="">
-                </td>
-                <td class="col-10 text-center">
-                    <img width="80%" height="100" src="{{ asset('kop.png')}}" alt="">
+                </td> --}}
+                <td class="col-12 text-center">
+                    <img width="100%" height="100" src="{{ asset('kop.jpeg')}}" alt="">
                 </td>
             </tr>
             <tr class="row">

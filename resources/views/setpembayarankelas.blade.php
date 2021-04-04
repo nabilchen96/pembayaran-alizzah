@@ -67,7 +67,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-form-label">Kelas</label>
-                                        <select class="form-control" name="id_kelas">
+                                        <select class="form-control" name="id_kelas" required>
+                                            <option value="">----</option>
                                             @foreach ($kelas as $item)
                                                 <option value="{{ $item->id_kelas }}">{{ $item->kelas }}/{{ $item->jenjang }}</option>
                                             @endforeach
@@ -145,8 +146,9 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Kelas</label>
                                                     <select class="form-control" name="id_kelas">
+                                                        <option value="{{ $item->id_kelas }}" selected>{{ $item->kelas }}/{{ $item->jenjang }}</option>
                                                         @foreach ($kelas as $k)
-                                                            <option value="{{ $k->id_kelas }}" {{ $item->id_kelas == $k->id_kelas ? 'selected' : '' }}>{{ $k->kelas }}/{{ $k->jenjang }}</option>
+                                                            <option value="{{ $k->id_kelas }}">{{ $k->kelas }}/{{ $k->jenjang }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

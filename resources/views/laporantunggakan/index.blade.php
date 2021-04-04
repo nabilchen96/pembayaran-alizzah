@@ -78,9 +78,10 @@ active
                             <thead>
                                 <tr>
                                     <th width="20px">No</th>
+                                    <th>NIS</th>
                                     <th>Nama Siswa</th>
                                     <th>Kelas</th>
-                                    <th>Total Tunggakan</th>
+                                    {{-- <th>Total Tunggakan</th> --}}
                                     <th>Total Hutang</th>
                                     {{-- status tunggakan = 2 bulan menunggak  --}}
                                     <th width="10px"></th>
@@ -128,19 +129,20 @@ active
                     id = data
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
+                { data: 'nis', name: 'nis'},
                 { data: 'nama_siswa', name: 'nama_siswa'},
                 { data: 'kelas', name: 'kelas', render: function(data){
                     return data == 0 ? 'Data Kelas Belum Diset' : data
                 }},
-                { data: 'total_tunggakan', name: 'total_tunggakan', render: function(data, type, row, meta){
-                    if(!row.spp){
-                        return 'Pembayaran Kelas Belum Diset'
-                    }else{
-                        return data+' Bulan Menunggak'
-                    }
-                }},
+                // { data: 'total_tunggakan', name: 'total_tunggakan', render: function(data, type, row, meta){
+                //     if(!row.spp){
+                //         return 'Pembayaran Kelas Belum Diset'
+                //     }else{
+                //         return data+' Bulan Menunggak'
+                //     }
+                // }},
                 { data: 'hutang_tunggakan', name: 'hutang_tunggakan', render: function(data, type, row, meta){
-                    if(row.total_tunggakan == 0){
+                    if(row.hutang_tunggakan == 0){
                         return 'Tidak Ada Hutang Tunggakan'
                     }else{
                         return data == 0 ? 'Pembayaran Kelas Belum Diset' :"Rp. "+Intl.NumberFormat().format(data)
