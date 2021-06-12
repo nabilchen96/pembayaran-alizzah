@@ -25,12 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //total pendapatan
-        $transaksi = DB::table('transaksis')
-                    ->join('tahun_ajarans','tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
-                    ->where('tahun_ajarans.status_aktif', 1)
-                    ->sum('jumlah_bayar');
-
         //total kelas
         $kelas  = DB::table('kelas')->count();
 
@@ -42,10 +36,24 @@ class HomeController extends Controller
         $siswa  = DB::table('siswas')
                     ->count();
 
+        $pemasukan      = DB::table('rekap_transaksis')
+                            ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rekap_transaksis.id_tahun')
+                            ->where('tahun_ajarans.status_aktif', 1)
+                            ->where('rekap_transaksis.jenis_transaksi', 'pemasukan')
+                            ->sum('rekap_transaksis.jumlah_transaksi');
+
+        $pengeluaran    = DB::table('rekap_transaksis')
+                            ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rekap_transaksis.id_tahun')
+                            ->where('tahun_ajarans.status_aktif', 1)
+                            ->where('rekap_transaksis.jenis_transaksi', 'pengeluaran')
+                            ->sum('rekap_transaksis.jumlah_transaksi');
+
+        $saldo          = $pemasukan - $pengeluaran;
+
         return view('home')
             ->with('kelas', $kelas)
             ->with('siswa', $siswa)
             ->with('penerima_bantuan', $penerima_bantuan)
-            ->with('transaksi', $transaksi);
+            ->with('saldo', $saldo);
     }
 }

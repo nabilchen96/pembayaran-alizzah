@@ -73,7 +73,7 @@
             @endforeach
             <tr class="row">
                 <td class="col-11" colspan="2">
-                    <hr>
+                    <hr style="border-bottom: groove; border-color:black">
                 </td>
                 <td class="col-1">(+)</td>
             </tr>

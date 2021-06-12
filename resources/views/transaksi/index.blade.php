@@ -8,9 +8,8 @@
 <link rel="stylesheet" href="{{ asset('adminlte/plugins/toastr/toastr.min.css') }}">
 @endpush
 
-@push('transaksi')
-    active  
-@endpush
+@push('transaksi') menu-open @endpush
+@push('transaksi') active @endpush
 
 @section('content')
 <!-- Default box -->

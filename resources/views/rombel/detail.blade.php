@@ -163,10 +163,10 @@
         $('#table-siswa').DataTable({
             processing: true,
             serverSide: true,
-            ajax: 'siswa-json',
+            ajax: 'rombel-add-json',
             columns: [
                 { data: 'id_siswa', render: function (data){
-                    return '<input type="checkbox" class="form-control checkbox-siswa" name="siswa[]" value="'+data+'">'
+                    return '<input type="checkbox" class="checkbox-siswa" name="siswa[]" value="'+data+'">'
                 }},
                 { data: 'id_siswa',     name:'id_siswa',    render: function (data, type, row, meta) {
                     id = data

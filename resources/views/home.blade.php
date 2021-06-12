@@ -29,14 +29,14 @@
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h4>Rp. {{ number_format($transaksi) }}</h4>
+                            <h4>Rp. {{ number_format(@$saldo) }}</h4>
 
-                            <p>Total Pendapatan</p>
+                            <p>Saldo Saat Ini</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-coins"></i>
                         </div>
-                        <a href="{{ url('transaksi') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ url('rekaptransaksi') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

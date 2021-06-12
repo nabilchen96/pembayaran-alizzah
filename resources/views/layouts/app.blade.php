@@ -127,6 +127,7 @@
                                 </p>
                             </a>
                         </li>
+                        @if (auth::user()->role == 'admin-master')
                         <li class="nav-item has-treeview @stack('master')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-dumpster-fire"></i>
@@ -147,6 +148,11 @@
                                     <a href="{{ url('kelas')}}"
                                         class="nav-link @if(Request::is('kelas')) active @endif">
                                         <p>Kelas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 30px">
+                                    <a href="{{ url('pegawai') }}" class="nav-link">
+                                        <p>Pegawai</p>
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin-left: 30px">
@@ -181,12 +187,35 @@
                                 <p>Penerima Keringanan</p>
                             </a>
                         </li>
+                        @else
                         <li class="nav-item">
-                            <a href="{{ url('transaksi') }}" class="nav-link @stack('transaksi')">
-                                <i class="nav-icon fas fa-cash-register"></i>
-                                <p>Transaksi</p>
+                            <a href="{{ url('setgaji') }}" class="nav-link  @if(Request::is('setgaji')) active @endif">
+                                <i class="nav-icon fas fa-coins"></i>
+                                <p>Set Gaji Pegawai</p>
                             </a>
                         </li>
+                        <li class="nav-item has-treeview @stack('transaksi')">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    Transaksi
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item" style="margin-left: 30px">
+                                    <a href="{{ url('transaksi') }}" class="nav-link @stack('transaksi')">
+                                        <p>Transaksi Pemasukan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 30px">
+                                    <a href="{{ url('pengeluaran') }}" class="nav-link @stack('transaksi_pengeluaran')">
+                                        <p>Transaksi Pengeluaran</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item has-treeview @stack('laporan')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-file"></i>
@@ -203,6 +232,16 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin-left: 30px">
+                                    <a href="{{ url('pengeluaran') }}" class="nav-link @stack('pengeluaran')">
+                                        <p>Rekap Pengeluaran</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 30px">
+                                    <a href="{{ url('rekaptransaksi') }}" class="nav-link @stack('rekaptransaksi')">
+                                        <p>Rekap Transaksi</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item" style="margin-left: 30px">
                                     <a href="{{ url('laporantunggakan') }}"
                                         class="nav-link @if(Request::is('laporantunggakan')) active @endif">
                                         <p>Laporan Tunggakan</p>
@@ -210,6 +249,7 @@
                                 </li>
                             </ul>
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -234,7 +274,7 @@
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 1.0
+                <b>Version</b> 2.0
             </div>
             <strong>Template By <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
             Developed by <a href="https://sahretech.com">Nabil Sahretech</a>

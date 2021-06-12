@@ -15,8 +15,11 @@ class TahunAjaranController extends Controller
         $tahun = TahunAjaran::select(
             'tahun',
             'status_aktif',
-            DB::raw('DATE_FORMAT(tgl_mulai, "%d-%m-%Y") as tgl_mulai'),
-            DB::raw('DATE_FORMAT(tgl_akhir, "%d-%m-%Y") as tgl_akhir'),
+            // DB::raw('DATE_FORMAT(tgl_mulai, "%d-%m-%Y") as tgl_mulai'),
+            // DB::raw('DATE_FORMAT(tgl_akhir, "%d-%m-%Y") as tgl_akhir'),
+            'tgl_mulai',
+            'tgl_akhir',
+            'id_tahun'
         )->get();
         return Datatables::of($tahun)->make(true);
     }
@@ -98,13 +101,13 @@ class TahunAjaranController extends Controller
             if($cektahun == 1){
                 return back()->with(['gagal' => 'Silahkan nonaktifkan tahun yang sedang aktif']);
             }else{
-                if($tahun->tgl_mulai > now()){
-                    return back()->with(['gagal' => 'Tanggal Mulai Lebih Besar Dari Hari Ini']);
-                }else{
+                // if($tahun->tgl_mulai > now()){
+                //     return back()->with(['gagal' => 'Tanggal Mulai Lebih Besar Dari Hari Ini']);
+                // }else{
                     $tahun->update([
                         'status_aktif'  => '1'
                     ]);
-                }
+                // }
 
                 return back()->with(['sukses' => 'Tahun Berhasil Diaktifkan']);
             }

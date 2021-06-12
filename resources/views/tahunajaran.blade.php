@@ -56,7 +56,7 @@ menu-open
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form id="formtambah" action="{{ url('tambahtahun') }}" method="post">
+                                <form onsubmit="return false;" id="formtambah" action="{{ url('tambahtahun') }}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">

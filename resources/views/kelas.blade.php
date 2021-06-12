@@ -128,7 +128,7 @@
     @endif
 </script>
 <script>
-    $(function() {
+    $(document).ready(function() {
         let id, kelas, jenjang;
         $('#table-kelas').DataTable({
             processing: true,

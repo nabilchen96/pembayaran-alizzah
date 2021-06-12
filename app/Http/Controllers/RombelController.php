@@ -10,12 +10,29 @@ use Exception;
 use DB;
 use App\Exports\RombelExport;
 use Maatwebsite\Excel\Facades\Excel;
+use DataTables;
+use App\Siswa;
 
 class RombelController extends Controller
 {
     public function index(){
         $kelas = Kelas::all();
         return view('rombel.index')->with('kelas', $kelas);
+    }
+
+    public function addrombel(){
+
+        $data = Siswa::whereNotIn(
+            'id_siswa', function($query){
+                $query->select('id_siswa')
+                        ->from('rombels')
+                        ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rombels.id_tahun')
+                        ->where('tahun_ajarans.status_aktif', '1');
+            }
+        )->get();
+        
+        return DataTables::of($data)
+        ->toJson();
     }
 
     public function detail(Request $request){

@@ -17,7 +17,6 @@ active
 
 @section('content')
 <!-- Default box -->
-
 <div class="content-wrapper">
     <!-- Content Header & bread crumb -->
     <section class="content-header">
@@ -60,18 +59,24 @@ active
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="form-group row">
-                        <div class="col-sm-3">
-                            <select id="id_pembayaran" name="id_jenis_pembayaran" class="form-control">
-                                @foreach ($pembayaran as $item)
-                                    <option value="{{ $item->id_jenis_pembayaran }}">{{ $item->nama_pembayaran}}</option>
-                                @endforeach
-                            </select>
+                    <?php $tahun = DB::table('tahun_ajarans')->where('status_aktif', 1)->count(); ?>
+                    @if ($tahun == 0)
+                        <span class="badge badge-danger">Aktifkan Tahun Ajaran Terlebih Dahulu untuk Melihat Laporan</span>
+                        <br>
+                    @else
+                        <div class="form-group row">
+                            <div class="col-sm-3">
+                                <select id="id_pembayaran" name="id_jenis_pembayaran" class="form-control">
+                                    @foreach ($pembayaran as $item)
+                                        <option value="{{ $item->id_jenis_pembayaran }}">{{ $item->nama_pembayaran}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-2"> 
+                                <button onclick="getpembayaran()" class="btn btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
-                        <div class="col-sm-2">
-                            <button onclick="getpembayaran()" class="btn btn btn-primary"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
+                    @endif
                     <br>
                     <div class="table-responsive">
                         <table width="100%" id="table-tahun" class="table table-striped table-bordered">
@@ -84,7 +89,7 @@ active
                                     {{-- <th>Total Tunggakan</th> --}}
                                     <th>Total Hutang</th>
                                     {{-- status tunggakan = 2 bulan menunggak  --}}
-                                    <th width="10px"></th>
+                                    {{-- <th width="10px"></th> --}}
                                 </tr>
                             </thead>
                         </table>
@@ -142,15 +147,17 @@ active
                 //     }
                 // }},
                 { data: 'hutang_tunggakan', name: 'hutang_tunggakan', render: function(data, type, row, meta){
-                    if(row.hutang_tunggakan == 0){
+                    if(row.spp == null){
+                        return 'Pembayaran Kelas Belum Diset'
+                    }else if(data == 0){
                         return 'Tidak Ada Hutang Tunggakan'
                     }else{
-                        return data == 0 ? 'Pembayaran Kelas Belum Diset' :"Rp. "+Intl.NumberFormat().format(data)
+                        return data == 0 ? 'Pembayaran Kelas Belum Diset' : "Rp. "+Intl.NumberFormat().format(data)
                     }
                 }},
-                { name: 'surat', render: function(data, type, row, meta){
-                    return '<a href="{{ url("surat-tunggakan") }}/'+row.id_siswa+'" class="btn btn-sm btn-danger"><i class="fas fa-envelope"></i></a>'
-                }}
+                // { name: 'surat', render: function(data, type, row, meta){
+                //     return '<a href="{{ url("surat-tunggakan") }}/'+row.id_siswa+'" class="btn btn-sm btn-danger"><i class="fas fa-envelope"></i></a>'
+                // }}
             ]
         });
     }

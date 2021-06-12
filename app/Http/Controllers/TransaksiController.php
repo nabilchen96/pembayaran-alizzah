@@ -11,6 +11,7 @@ use App\SetPembayaranKelas;
 use App\Kelas;
 use App\Rombel;
 use App\TahunAjaran;
+use App\RekapTransaksi;
 
 class TransaksiController extends Controller
 {
@@ -69,7 +70,6 @@ class TransaksiController extends Controller
     }
 
     public function create(Request $request){
-        
         $kelas      = Kelas::all();
         $id_kelas   = $request->input('id_kelas');
         $id_siswa   = $request->input('id_siswa');
@@ -136,26 +136,31 @@ class TransaksiController extends Controller
             'id_kelas'              => 'required',
         ]);
 
-        // dd($request->input('id_kelas'));
+        // dd($request);
 
         $jumlah_bayar   = $request->input('jumlah_bayar');
         $kosong_bayar   = 0;
         $tahun          = TahunAjaran::where('status_aktif', 1)->first();
         
-        $transaksi                  = DB::table('transaksis')->select('kd_nota')->latest('created_at')->first();
+        $transaksi                  = DB::table('transaksis')->select('kd_nota')
+                                        ->where('id_tahun', $tahun->id_tahun)
+                                        ->latest('created_at')->first();
+                                        
         if(empty($transaksi->kd_nota)){
             $int_kd_transaksi           = 1;
         }else{
             $kd_transaksi_potong_awal   = substr($transaksi->kd_nota, 3);
-            $kd_transaksi_potong_akhir  = substr($kd_transaksi_potong_awal, -1);
+            $kd_transaksi_potong_akhir  = substr($kd_transaksi_potong_awal, 8);
             $int_kd_transaksi           = (int)$kd_transaksi_potong_akhir+1;
         }
+
+        // dd($int_kd_transaksi);
 
 
         $krr    = explode('-', $request->input('tgl_transaksi'));
         $result = implode("", $krr);
 
-        $kode_nota = 'TRX'.$result.$int_kd_transaksi;
+        $kode_nota = 'TRM'.$result.$int_kd_transaksi;
 
         for($i=0; $i<count($jumlah_bayar); $i++){
             if($jumlah_bayar[$i] !== null){
@@ -163,7 +168,7 @@ class TransaksiController extends Controller
                     'tgl_transaksi'         => $request->input('tgl_transaksi'),
                     'id_kelas'              => $request->input('id_kelas'),
                     'id_jenis_pembayaran'   => $request->input('id_jenis_pembayaran')[$i],
-                    'jumlah_bayar'          => $request->input('jumlah_bayar')[$i],
+                    'jumlah_bayar'          => str_replace(",", "", $request->jumlah_bayar[$i]),
                     'keterangan'            => $request->input('keterangan'),
                     'nama_pembayar'         => $request->input('nama_pembayar'),
                     'id_tahun'              => $tahun->id_tahun,
@@ -175,11 +180,29 @@ class TransaksiController extends Controller
             }
         }
 
-
-
         if($kosong_bayar == count($jumlah_bayar)){
             return back()->with(['gagal' => 'Data Tidak Berhasil Disimpan, Isi Data Jumlah Bayar Terlebih Dahulu']);
         }else{
+            $data_trx = DB::table('transaksis')
+                        ->groupBY('kd_nota')
+                        ->select(
+                            'kd_nota',
+                            'nama_pembayar',
+                            'keterangan',
+                            DB::raw('sum(jumlah_bayar) as total_bayar')
+                        )
+                        ->where('kd_nota', $kode_nota)
+                        ->first();
+
+            RekapTransaksi::create([
+                'tgl_transaksi'     => $request->input('tgl_transaksi'),
+                'jenis_transaksi'   => 'pemasukan',
+                'jumlah_transaksi'  => $data_trx->total_bayar,
+                'keterangan'        => $data_trx->keterangan.' atas nama '.$data_trx->nama_pembayar.' Kode Nota '.$kode_nota,
+                'kd_nota'           => $kode_nota,
+                'id_tahun'          => $tahun->id_tahun
+            ]);
+
             return redirect('transaksi')->with(['sukses' => 'Data Berhasil Disimpan']);
         }
     }
@@ -236,14 +259,4 @@ class TransaksiController extends Controller
             ->with('pembayaran', $pembayaran)
             ->with('nota', $nota);
     }
-
-    // public function update(Request $request){
-    //     $request->validate([
-    //         'nama_pembayar' => 'required',
-    //         'kd_nota'       => 'required',
-    //         'tgl_transaksi' => 'required',
-    //         'di_kelas'      => 'required',
-    //         'keterangan'    => 'required',
-    //     ]);
-    // }
 }
