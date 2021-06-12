@@ -45,6 +45,14 @@ Route::get('/hapussiswa/{id}', 'SiswaController@destroy');
 Route::get('/siswa-export', 'SiswaController@export');
 Route::post('/siswa-import', 'SiswaController@import');
 
+Route::get('/pegawai', 'PegawaiController@index');
+Route::get('/tambahpegawai', 'PegawaiController@create');
+Route::post('/simpanpegawai', 'PegawaiController@store');
+Route::get('/editpegawai/{id}', 'PegawaiController@edit');
+Route::post('/updatepegawai', 'PegawaiController@update');
+Route::get('/hapuspegawai/{id}', 'PegawaiController@destroy');
+Route::get('/pegawai-export', 'PegawaiController@export');
+
 Route::get('/jenispembayaran-json', 'JenisPembayaranController@json');
 Route::get('/jenispembayaran', 'JenisPembayaranController@index');
 Route::post('/tambahjenispembayaran', 'JenisPembayaranController@store');
@@ -65,6 +73,7 @@ Route::get('/hapuskeringanan/{id}', 'JenisKeringananController@destroy');
 
 Route::get('/rombel', 'RombelController@index'); //direct database
 Route::get('/detailrombel', 'RombelController@detail'); //with json
+Route::get('/rombel-add-json', 'RombelController@addrombel');
 Route::post('/tambahdetailrombel', 'RombelController@store');
 Route::post('/editdetailrombel', 'RombelController@update');
 Route::get('/hapusdetailrombel/{id}', 'RombelController@destroy');
@@ -79,6 +88,14 @@ Route::post('/updatepenerimakeringanan', 'PenerimaKeringananController@update');
 Route::get('/hapuspenerimakeringanan/{id}', 'PenerimaKeringananController@destroy');
 Route::get('/penerimakeringanan-export/{id}', 'PenerimaKeringananController@export');
 
+Route::get('/setgaji', 'SetGajiController@index');
+Route::post('/tambahsetgaji', 'SetGajiController@store');
+Route::get('/hapusgaji/{id}', 'SetGajiController@destroy');
+Route::get('/editgaji/{id}', 'SetGajiController@edit');
+Route::post('/updategaji', 'SetGajiController@update');
+Route::get('/destroygaji/{id}', 'SetGajiController@destroygaji');
+Route::get('/setgaji-export', 'SetGajiController@export');
+
 Route::get('/transaksi', 'TransaksiController@index');
 Route::get('/transaksi-json', 'TransaksiController@json');
 Route::get('/tambah-transaksi', 'TransaksiController@create');
@@ -87,12 +104,21 @@ Route::get('/detail-transaksi/{id}', 'TransaksiController@edit');
 Route::post('/update-transaksi', 'TransaksiController@update');
 Route::get('/nota/{id}', 'TransaksiController@nota');
 
-
 //laporan pemasukan
 Route::get('/rekappemasukan', 'RekapPemasukanController@index');
 Route::get('/rekappemasukan-json', 'RekapPemasukanController@json');
 Route::get('/rekappemasukan-export', 'RekapPemasukanController@export');
-
+//pengeluaran
+Route::get('/pengeluaran', 'PengeluaranController@index');
+Route::get('/pengeluaran-json', 'PengeluaranController@json');
+Route::get('/tambahpengeluaran', 'PengeluaranController@create');
+Route::post('/tambahpengeluaranlain', 'PengeluaranController@pengeluaranlain');
+Route::post('/tambahgajipegawai', 'PengeluaranController@gajipegawai');
+Route::get('/pengeluaran-export', 'PengeluaranController@export');
+//rekappemasukan
+Route::get('/rekaptransaksi-json', 'RekapTransaksiController@json');
+Route::get('/rekaptransaksi', 'RekapTransaksiController@index');
+Route::get('/rekap-transaksi-export', 'RekapTransaksiController@export');
 //laporan tunggakan
 Route::get('/laporantunggakan', 'LaporanTunggakanController@index');
 Route::get('/laporantunggakan-json', 'LaporanTunggakanController@json');
