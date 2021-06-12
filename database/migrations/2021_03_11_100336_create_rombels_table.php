@@ -17,7 +17,7 @@ class CreateRombelsTable extends Migration
             $table->bigIncrements('id_rombel');
             $table->bigInteger('id_kelas');
             $table->bigInteger('id_siswa');
-            $table->string('id_tahun');
+            $table->bigINteger('id_tahun');
             $table->timestamps();
         });
     }
