@@ -250,7 +250,7 @@
                             </ul>
                         </li>
                         @endif
-                        @if (auth::user()->email == 'nbelputra437@gmail.com')
+                        @if (auth::user()->role == 'admin-master')
                         <li class="nav-item">
                             <a href="{{ url('backup') }}" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
