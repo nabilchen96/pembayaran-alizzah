@@ -250,16 +250,6 @@
                             </ul>
                         </li>
                         @endif
-                        @if (auth::user()->role == 'admin-master')
-                        <li class="nav-item">
-                            <a href="{{ url('backup') }}" class="nav-link">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Backup Data
-                                </p>
-                            </a>
-                        </li>
-                        @endif
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
