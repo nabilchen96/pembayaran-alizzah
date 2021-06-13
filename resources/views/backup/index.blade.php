@@ -65,7 +65,8 @@
                                 @foreach ($data as $k => $item)
                                     <tr>
                                         <td>{{ $k+1 }}</td>
-                                        <td>{{ $item->Tables_in_pembayaran_alizzah }}</td>
+                                        <?php $tabel = 'Tables_in_'.config('app.DB_DATABASE'); ?>
+                                        <td>{{ $item->$tabel }}</td>
                                         <td></td>
                                     </tr>
                                 @endforeach

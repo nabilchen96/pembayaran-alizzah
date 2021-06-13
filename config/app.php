@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'DB_DATABASE' => env('DB_DATABASE'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
