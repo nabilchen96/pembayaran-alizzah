@@ -125,4 +125,6 @@ Route::get('/laporantunggakan-json', 'LaporanTunggakanController@json');
 Route::get('/laporantunggakan-export/{id}', 'LaporanTunggakanController@export');
 Route::get('surat-tunggakan/{id}', 'LaporanTunggakanController@surat');
 
+Route::get('backup', 'BackupDatabaseController@index');
+
 });
