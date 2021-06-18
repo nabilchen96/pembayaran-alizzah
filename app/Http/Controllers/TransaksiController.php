@@ -21,7 +21,7 @@ class TransaksiController extends Controller
                         ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
                         ->where('tahun_ajarans.status_aktif', 1)
                         ->select(
-                            'transaksis.tgl_transaksi',
+                            DB::raw('MAX(transaksis.tgl_transaksi) as tgl_transaksi'),
                             'transaksis.kd_nota', 
                             'transaksis.id_transaksi', 
                             'transaksis.keterangan', 
@@ -53,13 +53,11 @@ class TransaksiController extends Controller
                         ->where('tahun_ajarans.status_aktif', 1)
                         ->sum('jumlah_bayar');
 
-        $total_transaksi    = DB::table('transaksis')
+        $totals    = DB::table('transaksis')
                                 ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
                                 ->where('tahun_ajarans.status_aktif', 1)
-                                ->groupBy('kd_nota')
-                                ->get();
-
-        $totals = count($total_transaksi);
+                                ->distinct('kd_nota')
+                                ->count();
 
         return view('transaksi.index')
                     ->with('totals', $totals)
