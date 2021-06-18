@@ -234,7 +234,7 @@ class TransaksiController extends Controller
                     ->where('kd_nota', $id)
                     ->Leftjoin('siswas', 'siswas.id_siswa', '=', 'transaksis.id_siswa')
                     ->select('kd_nota', 'tgl_transaksi', 'nama_pembayar', 'keterangan', 'siswas.nama_siswa', 'siswas.nis')
-                    ->groupBy('kd_nota')
+                    ->distinct('kd_nota')
                     ->first();
 
         $pembayaran = DB::table('transaksis')
