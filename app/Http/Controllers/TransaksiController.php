@@ -29,7 +29,6 @@ class TransaksiController extends Controller
                             DB::raw('sum(jumlah_bayar) as total_pembayaran')
                         )
                         ->groupBy('kd_nota')
-                        ->orderBy('transaksis.tgl_transaksi', 'DESC')
                         ->get();
 
         return Datatables::of($transaksi)->make(true);
