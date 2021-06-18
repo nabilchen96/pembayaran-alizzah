@@ -19,7 +19,8 @@ class RekapPemasukanController extends Controller
                         ->where('tahun_ajarans.status_aktif', 1)
                         ->select(
                             'transaksis.kd_nota',
-                            DB::raw('DATE_FORMAT(transaksis.tgl_transaksi, "%d-%m-%Y") as tgl_transaksi'),
+                            // DB::raw('DATE_FORMAT(transaksis.tgl_transaksi, "%d/%m/%Y") as tgl_transaksi'),
+                            'transaksis.tgl_transaksi',
                             'jenis_pembayarans.nama_pembayaran',
                             'transaksis.jumlah_bayar',
                             'siswas.nama_siswa',
