@@ -31,13 +31,13 @@ class PengeluaranController extends Controller
                         ->where('tahun_ajarans.status_aktif', 1)
                         ->sum('total_harga');
 
-        $total_transaksi    = DB::table('pengeluarans')
+        $totals    = DB::table('pengeluarans')
                                 ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'pengeluarans.id_tahun')
                                 ->where('tahun_ajarans.status_aktif', 1)
                                 ->distinct('kd_nota')
                                 ->count();
 
-        $totals = count($total_transaksi);
+        // $totals = count($total_transaksi);
 
         return view('pengeluaran.index')
                 ->with('totals', $totals)
