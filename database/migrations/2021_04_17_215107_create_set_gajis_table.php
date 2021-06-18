@@ -17,8 +17,8 @@ class CreateSetGajisTable extends Migration
             $table->bigIncrements('id_setgaji');
             $table->integer('id_pegawai');
             $table->integer('id_tahun');
-            $table->integer('jenis_rincian');
-            $table->text('gaji_rincian');
+            $table->text('jenis_rincian');
+            $table->integer('gaji_rincian');
             $table->timestamps();
         });
     }

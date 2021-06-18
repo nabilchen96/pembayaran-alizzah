@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Setgaji;
+use App\SetGaji;
 use App\Pegawai;
 use DB;
 use App\Exports\GajiPegawaiExport;
@@ -41,7 +41,7 @@ class SetGajiController extends Controller
 
         for($i=0; $i<=count($request->input('jenis_rincian'))-1; $i++){
             if($request->input('jenis_rincian')[$i] != null){
-                Setgaji::create([
+                SetGaji::create([
                     'id_pegawai'    => $request->input('id_pegawai'),
                     'jenis_rincian' => $request->input('jenis_rincian')[$i],
                     'gaji_rincian'  => $request->input('gaji_rincian')[$i],
@@ -77,7 +77,7 @@ class SetGajiController extends Controller
 
         for($i=0; $i<=count($request->input('jenis_rincian'))-1; $i++){
             if($request->input('jenis_rincian')[$i] != null){
-                Setgaji::create([
+                SetGaji::create([
                     'id_pegawai'    => $request->input('id_pegawai'),
                     'jenis_rincian' => $request->input('jenis_rincian')[$i],
                     'gaji_rincian'  => $request->input('gaji_rincian')[$i],
@@ -90,13 +90,13 @@ class SetGajiController extends Controller
     }
 
     public function destroy($id){
-        Setgaji::where('id_pegawai', $id)->delete();
+        SetGaji::where('id_pegawai', $id)->delete();
 
         return back()->with(['sukses' => 'Data Berhasil Dihapus!']);
     }
 
     public function destroygaji($id){
-        Setgaji::find($id)->delete();
+        SetGaji::find($id)->delete();
 
         return back()->with(['sukses' => 'Data Berhasil Dihapus!']);
     }
