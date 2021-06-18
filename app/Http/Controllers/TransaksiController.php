@@ -22,9 +22,6 @@ class TransaksiController extends Controller
                         ->where('tahun_ajarans.status_aktif', 1)
                         ->select(
                             'transaksis.kd_nota', 
-                            // 'transaksis.id_transaksi', 
-                            // 'transaksis.keterangan', 
-                            // 'transaksis.nama_pembayar', 
                             DB::raw('sum(jumlah_bayar) as total_pembayaran'),
                             DB::raw('MAX(tgl_transaksi) as tgl_transaksi'),
                             DB::raw('MAX(keterangan) as keterangan'),
@@ -107,9 +104,6 @@ class TransaksiController extends Controller
                                     'keringanans.besaran_keringanan'
                                 )
                                 ->get();
-
-                // echo json_encode($pembayaran);
-                // die;
             }else{
                 $id_siswa = null;
             }
@@ -135,8 +129,6 @@ class TransaksiController extends Controller
             'id_kelas'              => 'required',
         ]);
 
-        // dd($request);
-
         $jumlah_bayar   = $request->input('jumlah_bayar');
         $kosong_bayar   = 0;
         $tahun          = TahunAjaran::where('status_aktif', 1)->first();
@@ -152,8 +144,6 @@ class TransaksiController extends Controller
             $kd_transaksi_potong_akhir  = substr($kd_transaksi_potong_awal, 8);
             $int_kd_transaksi           = (int)$kd_transaksi_potong_akhir+1;
         }
-
-        // dd($int_kd_transaksi);
 
 
         $krr    = explode('-', $request->input('tgl_transaksi'));
@@ -183,7 +173,7 @@ class TransaksiController extends Controller
             return back()->with(['gagal' => 'Data Tidak Berhasil Disimpan, Isi Data Jumlah Bayar Terlebih Dahulu']);
         }else{
             $data_trx = DB::table('transaksis')
-                        ->groupBY('kd_nota')
+                        ->distinct('kd_nota')
                         ->select(
                             'kd_nota',
                             'nama_pembayar',
