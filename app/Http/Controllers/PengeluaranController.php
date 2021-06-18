@@ -34,8 +34,8 @@ class PengeluaranController extends Controller
         $total_transaksi    = DB::table('pengeluarans')
                                 ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'pengeluarans.id_tahun')
                                 ->where('tahun_ajarans.status_aktif', 1)
-                                ->groupBy('kd_nota')
-                                ->get();
+                                ->distinct('kd_nota')
+                                ->count();
 
         $totals = count($total_transaksi);
 
