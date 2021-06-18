@@ -26,7 +26,8 @@ class TransaksiController extends Controller
                             'transaksis.keterangan', 
                             'transaksis.nama_pembayar', 
                             DB::raw('sum(jumlah_bayar) as total_pembayaran'),
-                            DB::raw('MAX(tgl_transaksi) as tgl_transaksi')
+                            DB::raw('MAX(tgl_transaksi) as tgl_transaksi'),
+                            DB::raw('count(transaksis.id_transaksi) as total_id_transaksi')
                         )
                         ->groupBy('kd_nota');
 
