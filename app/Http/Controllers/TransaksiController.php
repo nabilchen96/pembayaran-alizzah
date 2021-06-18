@@ -22,14 +22,15 @@ class TransaksiController extends Controller
                         ->where('tahun_ajarans.status_aktif', 1)
                         ->select(
                             'transaksis.kd_nota', 
-                            'transaksis.id_transaksi', 
+                            // 'transaksis.id_transaksi', 
                             'transaksis.keterangan', 
                             'transaksis.nama_pembayar', 
                             DB::raw('sum(jumlah_bayar) as total_pembayaran'),
                             DB::raw('MAX(tgl_transaksi) as tgl_transaksi'),
-                            DB::raw('count(transaksis.id_transaksi) as total_id_transaksi')
+                            // DB::raw('count(transaksis.id_transaksi) as total_id_transaksi')
                         )
-                        ->groupBy('kd_nota');
+                        ->groupBy('kd_nota')
+                        ->get();
 
         return Datatables::of($transaksi)->make(true);
     }
