@@ -173,11 +173,11 @@ class TransaksiController extends Controller
             return back()->with(['gagal' => 'Data Tidak Berhasil Disimpan, Isi Data Jumlah Bayar Terlebih Dahulu']);
         }else{
             $data_trx = DB::table('transaksis')
-                        ->distinct('kd_nota')
+                        ->groupBy('kd_nota')
                         ->select(
                             'kd_nota',
-                            'nama_pembayar',
-                            'keterangan',
+                            DB::raw('max(nama_pembayar) as nama_pembayar'),
+                            DB::raw('max(keterangan) as keterangan'),
                             DB::raw('sum(jumlah_bayar) as total_bayar')
                         )
                         ->where('kd_nota', $kode_nota)
