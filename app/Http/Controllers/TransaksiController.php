@@ -222,7 +222,7 @@ class TransaksiController extends Controller
                         'siswas.id_siswa',
                         'transaksis.kd_nota'
                     )
-                    ->groupBy('transaksis.kd_nota')
+                    ->distinct('transaksis.kd_nota')
                     ->first();
 
         return view('transaksi.edit')->with('data', $data)->with('transaksi', $transaksi);
