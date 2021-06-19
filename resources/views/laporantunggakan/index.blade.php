@@ -27,7 +27,7 @@ active
                         <div class="col-sm-6">
                             <ol class="breadcrumb" style="padding-top: 5px">
                                 <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item">Laporan</li>
+                                <li class="breadcrumb-item">Laporan {{ config('app.db_connection') }}</li>
                                 <li class="breadcrumb-item active">Laporan Tunggakan</li>
                             </ol>
                         </div>

@@ -17,6 +17,8 @@ return [
 
     'DB_DATABASE' => env('DB_DATABASE'),
 
+    'db_connection' => env('DB_CONNECTION', 'mysql'),
+
 
     /*
     |--------------------------------------------------------------------------
