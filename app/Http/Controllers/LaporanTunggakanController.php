@@ -34,7 +34,7 @@ class LaporanTunggakanController extends Controller
             //menampilkan pembayaran yang cocok dengan kelas si siswa
             $spp            = DB::table('rombels')
                                 ->join('siswas', 'siswas.id_siswa', '=', 'rombels.id_siswa')
-                                ->join('kelas', 'kelas.id_kelas', '=', 'rombels.id_Kelas')
+                                ->join('kelas', 'kelas.id_kelas', '=', 'rombels.id_kelas')
                                 ->join('set_pembayaran_kelas', 'set_pembayaran_kelas.id_kelas', '=', 'kelas.id_kelas')
                                 ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'set_pembayaran_kelas.id_jenis_pembayaran')
                                 ->where('siswas.id_siswa', $d->id_siswa)
