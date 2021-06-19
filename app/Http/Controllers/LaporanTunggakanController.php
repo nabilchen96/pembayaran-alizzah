@@ -78,8 +78,8 @@ class LaporanTunggakanController extends Controller
                                 ->where('tahun_ajarans.status_aktif', 1)
                                 ->select(
                                     DB::raw('
-                                    DATE_PART("year", "CURRENT_DATE"::date) - DATE_PART(year", "'.$tahun->tgl_mulai.'"::date) * 12 +
-                                    DATE_PART("month", "CURRENT_DATE"::date) - DATE_PART("month", "'.$tahun->tgl_mulai.'"::date)
+                                    DATE_PART("year", "CURRENT_DATE") - DATE_PART(year", "'.$tahun->tgl_mulai.'") * 12 +
+                                    DATE_PART("month", "CURRENT_DATE") - DATE_PART("month", "'.$tahun->tgl_mulai.'")
                                     '),
                                     // DB::raw('TIMESTAMPDIFF(MONTH, "'.$tahun->tgl_mulai.'", CURRENT_DATE) as total_bulan'),
                                     DB::raw('sum(transaksis.jumlah_bayar) as jumlah_tunggakan')
