@@ -118,7 +118,6 @@
                                 </div>
                                 <form action="{{ url('tambahpengeluaran') }}" method="GET">
                                     <div class="modal-body">
-
                                         <div class="form-group">
                                             <label class="col-form-label">Jenis Pengeluaran</label>
                                             <select name="jenis_pengeluaran" class="form-control">
@@ -137,8 +136,54 @@
                         </div>
                     </div>
 
-                    <a href="{{ url('pengeluaran-export') }}" class="btn btn-sm btn-success"><i
-                            class="fas fa-file-excel"></i> Export</a>
+                    <a data-toggle="modal" data-target="#export" href="{{ url('pengeluaran-export') }}"
+                        class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Export</a>
+
+                    <div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Export Pengeluaran</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{ url('pengeluaran-export') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label class="col-form-label">Jenis Export</label>
+                                            <select id="jenis_export" name="jenis_export" class="form-control"
+                                                onchange="jenisexport()">
+                                                <option value="">--Pilih Jenis Export--</option>
+                                                <option value="1">Pertanggal</option>
+                                                <option value="2">Transaksi Hari Ini</option>
+                                                <option value="3">Transaksi Bulan Ini</option>
+                                                <option value="4">Transaksi Tahun Ini</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-none" id="form_tgl">
+                                            <div class="form-group">
+                                                <label class="col-form-label">Pilih Tanggal Awal</label>
+                                                <input type="date" class="form-control" name="tgl_awal">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label">Pilih Tanggal Akhir</label>
+                                                <input type="date" class="form-control" name="tgl_akhir">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Pilih</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                             title="Collapse">
@@ -150,7 +195,8 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table width="100%" id="table-pengeluaran" class="table table-striped table-bordered" style="font-size: 14px;">
+                        <table width="100%" id="table-pengeluaran" class="table table-striped table-bordered"
+                            style="font-size: 14px;">
                             <thead>
                                 <tr>
                                     <th width="20px">No</th>
@@ -212,5 +258,16 @@
              ]
          })
      })
+</script>
+<script>
+    function jenisexport(){
+        var jenis_export = document.getElementById('jenis_export').value
+
+        if(jenis_export == 1){
+            document.getElementById('form_tgl').removeAttribute('class')
+        }else{
+            document.getElementById('form_tgl').setAttribute('class', 'd-none')
+        }
+    }
 </script>
 @endpush

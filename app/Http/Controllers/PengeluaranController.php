@@ -192,8 +192,20 @@ class PengeluaranController extends Controller
         return redirect('pengeluaran')->with(['sukses' => 'Data Berhasil Disimpan!']);
     }
 
-    public function export(){
-        return Excel::download(new PengeluaranExport, 'Data_pengeluaran.xlsx');
+    public function export(Request $request){
+
+        $jenis_export = $request->jenis_export;
+
+        if($request->tgl_awal == null and $request->tgl_akhir == null){
+            $tgl_awal = 0;
+            $tgl_akhir = 0;
+        }else{
+            $tgl_awal = $request->tgl_awal;
+            $tgl_akhir = $request->tgl_akhir;
+        }
+
+        return Excel::download(new PengeluaranExport($jenis_export, $tgl_awal, $tgl_akhir), 'Data_pengeluaran.xlsx');
+
     }
 
     public function destroy($id){

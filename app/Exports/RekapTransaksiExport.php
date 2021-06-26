@@ -38,7 +38,7 @@ class RekapTransaksiExport implements FromView
         }elseif($this->jenis_export == 3){
 
             //mengambil semua data bulan ini
-            $data = RekapTransaksi::whereMonth('tgl_transaksi', date('m'))->get();
+            $data = RekapTransaksi::whereMonth('tgl_transaksi', date('m'))->whereYear('tgl_transaksi', date('Y'))->get();
 
         }elseif($this->jenis_export == 4){
 
