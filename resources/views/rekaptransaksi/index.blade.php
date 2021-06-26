@@ -116,7 +116,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                    <table width="100%" id="table-rekap" class="table table-striped table-bordered">
+                    <table width="100%" id="table-rekap" class="table table-striped table-bordered" style="font-size: 14px;">
                         <thead>
                             <tr>
                                 <th width="20px">No</th>

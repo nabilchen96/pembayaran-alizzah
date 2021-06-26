@@ -64,7 +64,22 @@ class RekapTransaksiController extends Controller
         return Datatables::of($rekap_trx)->make(true);
     }
 
-    public function export(){
-        return Excel::download(new RekapTransaksiExport, 'Data Rekap Transaksi.xlsx');
+    public function export(Request $request){
+
+        $jenis_export = $request->jenis_export;
+
+        if($request->tgl_awal == null and $request->tgl_akhir == null){
+
+            $tgl_awal = 0;
+            $tgl_akhir = 0;
+            return Excel::download(new RekapTransaksiExport($jenis_export, $tgl_awal, $tgl_akhir), 'Data Rekap Transaksi.xlsx');
+
+        }else{
+
+            $tgl_awal = $request->tgl_awal;
+            $tgl_akhir = $request->tgl_akhir;
+
+            return Excel::download(new RekapTransaksiExport($jenis_export, $tgl_awal, $tgl_akhir), 'Data Rekap Transaksi.xlsx');
+        }
     }
 }

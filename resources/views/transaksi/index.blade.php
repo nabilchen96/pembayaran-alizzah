@@ -118,7 +118,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                    <table width="100%" id="table-tahun" class="table table-striped table-bordered">
+                    <table width="100%" id="table-tahun" class="table table-striped table-bordered" style="font-size: 14px;">
                         <thead>
                             <tr>
                                 <th width="20px">No</th>
@@ -127,6 +127,7 @@
                                 <th width="100px">Total Bayar</th>
                                 <th>Pembayar</th>
                                 <th>Keterangan</th>
+                                <th width="10px"></th>
                                 <th width="10px"></th>
                                 <th width="10px"></th>
                             </tr>
@@ -173,7 +174,10 @@
                 { data: 'nama_pembayar', name: 'nama_pembayar' },
                 { data: 'keterangan', name: 'keterangan' },
                 { name: 'edit', render: function(data, type, row, meta){
-                    return '<a href="{{ url("detail-transaksi") }}/'+row.kd_nota+'" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>'
+                    return '<a href="{{ url("detail-transaksi") }}/'+row.kd_nota+'" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>'
+                }},
+                { name: 'hapus', render: function(data, type, row, meta){
+                    return '<a href="{{ url("hapus-transaksi") }}/'+row.kd_nota+'" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>'
                 }},
                 {
                     data: null, name: 'cetak', render: function(data, type, row, meta){

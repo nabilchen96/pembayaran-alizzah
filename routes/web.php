@@ -103,6 +103,7 @@ Route::post('/simpan-transaksi', 'TransaksiController@store');
 Route::get('/detail-transaksi/{id}', 'TransaksiController@edit');
 Route::post('/update-transaksi', 'TransaksiController@update');
 Route::get('/nota/{id}', 'TransaksiController@nota');
+Route::get('/hapus-transaksi/{id}', 'TransaksiController@destroy');
 
 //laporan pemasukan
 Route::get('/rekappemasukan', 'RekapPemasukanController@index');
@@ -115,10 +116,13 @@ Route::get('/tambahpengeluaran', 'PengeluaranController@create');
 Route::post('/tambahpengeluaranlain', 'PengeluaranController@pengeluaranlain');
 Route::post('/tambahgajipegawai', 'PengeluaranController@gajipegawai');
 Route::get('/pengeluaran-export', 'PengeluaranController@export');
+Route::get('/hapus-pengeluaran/{id}', 'PengeluaranController@destroy');
+
+
 //rekappemasukan
 Route::get('/rekaptransaksi-json', 'RekapTransaksiController@json');
 Route::get('/rekaptransaksi', 'RekapTransaksiController@index');
-Route::get('/rekap-transaksi-export', 'RekapTransaksiController@export');
+Route::post('/rekaptransaksi-export', 'RekapTransaksiController@export');
 //laporan tunggakan
 Route::get('/laporantunggakan', 'LaporanTunggakanController@index');
 Route::get('/laporantunggakan-json', 'LaporanTunggakanController@json');

@@ -195,4 +195,12 @@ class PengeluaranController extends Controller
     public function export(){
         return Excel::download(new PengeluaranExport, 'Data_pengeluaran.xlsx');
     }
+
+    public function destroy($id){
+
+        pengeluaran::where('kd_nota', $id)->delete();
+        RekapTransaksi::where('kd_nota', $id)->delete();
+
+        return back()->with(['sukses' => 'Data berhasil dihapus!']);
+    }
 }

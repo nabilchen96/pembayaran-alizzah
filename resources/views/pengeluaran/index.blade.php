@@ -150,7 +150,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table width="100%" id="table-pengeluaran" class="table table-striped table-bordered">
+                        <table width="100%" id="table-pengeluaran" class="table table-striped table-bordered" style="font-size: 14px;">
                             <thead>
                                 <tr>
                                     <th width="20px">No</th>
@@ -159,6 +159,7 @@
                                     <th>QTY</th>
                                     <th>Harga Satuan</th>
                                     <th>Total Harga</th>
+                                    <th width="10px"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -202,7 +203,12 @@
                 } },
                 { data: 'total_harga', name: 'total_harga', render: function(data){
                     return "Rp. "+Intl.NumberFormat().format(data)
-                }}
+                }},
+                {
+                    data: null, name: 'cetak', render: function(data, type, row, meta){
+                        return `<a href="{{ url('hapus-pengeluaran') }}/`+row.kd_nota+`" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>`
+                    }
+                }
              ]
          })
      })

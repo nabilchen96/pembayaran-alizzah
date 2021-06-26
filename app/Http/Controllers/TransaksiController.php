@@ -228,6 +228,47 @@ class TransaksiController extends Controller
         return view('transaksi.edit')->with('data', $data)->with('transaksi', $transaksi);
     }
 
+    public function update(Request $request){
+        // //query2
+        // $transaksi = DB::table('rekap_transaksis')->where('kd_nota', $request->kode_nota)->first();
+        
+        // //query3
+        // $rekap = RekapTransaksi::find($transaksi->id_rekap_transaksi);
+
+        // for($i=0; $i < count($request->id_transaksi); $i++){
+        //     if($request->jumlah_bayar[$i] == null){
+        //         //query1
+        //         $data = Transaksi::find($request->id_transaksi[$i]);
+
+        //         $rekap->update([
+        //             'jumlah_transaksi' => $transaksi->jumlah_transaksi - $data->jumlah_bayar
+        //         ]);
+
+
+        //         if($rekap->jumlah_transaksi == 0){
+        //             //query4
+        //             $rekap->delete();
+        //         }
+
+        //         //query5
+        //         $data->delete();
+        //     }else{
+        //         Transaksi::find($request->id_transaksi[$i])->update([
+        //             'jumlah_bayar'  => $request->jumlah_bayar[$i],
+        //             'keterangan'    => $request->keterangan,
+        //             'nama_pembayar' => $request->nama_pembayar,
+        //         ]);
+
+        //         $rekap->update([
+        //             'jumlah_transaksi'
+        //         ]);
+
+        //     }
+        // }
+
+        // return redirect('transaksi')->with(['sukses' => 'Data Berhasil Disimpan!']);
+    }
+
     public function nota($id){
 
         $nota = DB::table('transaksis')
@@ -247,5 +288,14 @@ class TransaksiController extends Controller
         return view('transaksi.nota')
             ->with('pembayaran', $pembayaran)
             ->with('nota', $nota);
+    }
+
+    public function destroy($id){
+
+        Transaksi::where('kd_nota', $id)->delete();
+        RekapTransaksi::where('kd_nota', $id)->delete();
+
+        return back()->with(['sukses' => 'Data Berhasil Dihapus']);
+
     }
 }

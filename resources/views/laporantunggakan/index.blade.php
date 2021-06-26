@@ -86,10 +86,7 @@ active
                                     <th>NIS</th>
                                     <th>Nama Siswa</th>
                                     <th>Kelas</th>
-                                    {{-- <th>Total Tunggakan</th> --}}
                                     <th>Total Hutang</th>
-                                    {{-- status tunggakan = 2 bulan menunggak  --}}
-                                    {{-- <th width="10px"></th> --}}
                                 </tr>
                             </thead>
                         </table>
