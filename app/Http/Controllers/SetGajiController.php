@@ -37,7 +37,7 @@ class SetGajiController extends Controller
             'id_pegawai'    => 'required',
         ]);
 
-        dd($request);
+        // dd($request);
 
         $tahun = DB::table('tahun_ajarans')->where('status_aktif', 1)->first();
 
