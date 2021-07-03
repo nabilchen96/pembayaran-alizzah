@@ -124,7 +124,7 @@
                                 </p>
                             </a>
                         </li>
-                        @if (auth::user()->role == 'admin-master')
+                        {{-- @if (auth::user()->role == 'keuangan') --}}
                         <li class="nav-item has-treeview @stack('master')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-dumpster-fire"></i>
@@ -184,7 +184,7 @@
                                 <p>Penerima Keringanan</p>
                             </a>
                         </li>
-                        @else
+                        {{-- @else --}}
                         <li class="nav-item">
                             <a href="{{ url('setgaji') }}" class="nav-link  @if(Request::is('setgaji')) active @endif">
                                 <i class="nav-icon fas fa-coins"></i>
@@ -246,7 +246,7 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
+                        {{-- @endif --}}
                         <li class="nav-item">
                             <a href="{{ url('backup') }}" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>

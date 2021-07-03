@@ -115,7 +115,6 @@ active
             var id = document.getElementById('id_pembayaran').value
             var a = document.getElementById('export');
                 a.href = "{{ url('laporantunggakan-export')}}/"+id
-
         $('#table-tahun').DataTable({
             bDestroy: true,
             processing: true,

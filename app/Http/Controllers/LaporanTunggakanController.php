@@ -73,18 +73,21 @@ class LaporanTunggakanController extends Controller
             }else{
                 
                 $transaksi      = DB::table('transaksis')
-                ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
-                ->where('id_siswa', $d->id_siswa)
-                ->where('id_jenis_pembayaran', $request->input('id_jenis_pembayaran'))
-                ->where('tahun_ajarans.status_aktif', 1)
-                ->select(
-                    DB::raw('TIMESTAMPDIFF(MONTH, "'.$tahun->tgl_mulai.'", CURRENT_DATE) as total_bulan'),
-                    DB::raw('sum(transaksis.jumlah_bayar) as jumlah_tunggakan')
-                    // DB::raw('sum(transaksis.jumlah_bayar) as jumlah_tunggakan')
-                )
-                ->first();
+                                ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
+                                ->where('id_siswa', $d->id_siswa)
+                                ->where('id_jenis_pembayaran', $request->input('id_jenis_pembayaran'))
+                                ->where('tahun_ajarans.status_aktif', 1)
+                                ->select(
+                                    // DB::raw('TIMESTAMPDIFF(MONTH, "'.$tahun->tgl_mulai.'", CURRENT_DATE) as total_bulan'),
+                                    DB::raw('sum(transaksis.jumlah_bayar) as jumlah_tunggakan')
+                                    // DB::raw('sum(transaksis.jumlah_bayar) as jumlah_tunggakan')
+                                )
+                                ->first();
 
-                $hutang_tunggakan      = (@$spp->biaya - @$keringanan->besaran_keringanan) * ($transaksi->total_bulan + 1) - $transaksi->jumlah_tunggakan;
+                $diff           = date_diff( date_create($tahun->tgl_mulai), date_create('m'));
+
+
+                $hutang_tunggakan    = (@$spp->biaya - @$keringanan->besaran_keringanan) * ($diff->m + 1) - $transaksi->jumlah_tunggakan;
                 // $hutang_tunggakan       = (@spp->biaya - @keringanan->besaran_keringanan);
             }
             
