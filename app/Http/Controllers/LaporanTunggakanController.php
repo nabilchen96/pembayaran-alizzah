@@ -27,9 +27,23 @@ class LaporanTunggakanController extends Controller
                         ->where('jenis_pembayarans.id_jenis_pembayaran',  $request->input('id_jenis_pembayaran'))
                         // ->where('siswas.id_siswa', $d->id_siswa)
                         ->where('tahun_ajarans.status_aktif', 1)
+                        ->select(
+                            db::raw('max(siswas.id_siswa) as id_siswa'),
+                            db::raw('max(siswas.nis) as nis'),
+                            db::raw('max(siswas.nama_siswa) as nama_siswa'),
+                            db::raw('max(set_pembayaran_kelas.biaya) as biaya'),
+                            db::raw('max(tahun_ajarans.tgl_mulai) as tgl_mulai'),
+                            db::raw('max(kelas.kelas) as kelas'),
+                            db::raw('max(kelas.jenjang) as jenjang')
+
+                        )
                         ->groupBy('siswas.id_siswa')
+                        // ->pluck('id_siswa', 'siswas.id_siswa')
                         ->get();
 
+                        // dd($data);
+
+                            
         //mengambil tanggal mulai di tahun aktif
         // $tahun  = DB::table('tahun_ajarans')->select('tgl_mulai')->where('status_aktif', 1)->first();
 
