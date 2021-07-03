@@ -124,7 +124,7 @@
                                 </p>
                             </a>
                         </li>
-                        @if (auth::user()->role == 'keuangan')
+                        @if (auth::user()->role == 'admin-master')
                         <li class="nav-item has-treeview @stack('master')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-dumpster-fire"></i>
