@@ -124,7 +124,7 @@
                                 </p>
                             </a>
                         </li>
-                        {{-- @if (auth::user()->role == 'keuangan') --}}
+                        @if (auth::user()->role == 'keuangan')
                         <li class="nav-item has-treeview @stack('master')">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-dumpster-fire"></i>
@@ -164,12 +164,7 @@
                                         <p>Jenis Pembayaran</p>
                                     </a>
                                 </li>
-                                <li class="nav-item" style="margin-left: 30px">
-                                    <a href="{{ url('jeniskeringanan') }}"
-                                        class="nav-link @if(Request::is('jeniskeringanan')) active @endif">
-                                        <p>Jenis Keringanan</p>
-                                    </a>
-                                </li>
+                             
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -178,13 +173,20 @@
                                 <p>Rombel</p>
                             </a>
                         </li>
+                        @else
+                        <li class="nav-item">
+                            <a href="{{ url('jeniskeringanan') }}"
+                                class="nav-link @if(Request::is('jeniskeringanan')) active @endif">
+                                <i class="nav-icon fas fa-handshake"></i>
+                                <p>Jenis Keringanan</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ url('penerimakeringanan') }}" class="nav-link @stack('penerimakeringanan')">
                                 <i class="nav-icon fas fa-handshake"></i>
                                 <p>Penerima Keringanan</p>
                             </a>
                         </li>
-                        {{-- @else --}}
                         <li class="nav-item">
                             <a href="{{ url('setgaji') }}" class="nav-link  @if(Request::is('setgaji')) active @endif">
                                 <i class="nav-icon fas fa-coins"></i>
@@ -244,17 +246,23 @@
                                         <p>Laporan Tunggakan</p>
                                     </a>
                                 </li>
+                                <li class="nav-item" style="margin-left: 30px">
+                                    <a href="{{ url('laporantunggakan') }}"
+                                        class="nav-link @if(Request::is('laporantunggakan')) active @endif">
+                                        <p>Laporan Persiswa</p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
-                        {{-- @endif --}}
-                        <li class="nav-item">
+                        @endif
+                        {{-- <li class="nav-item">
                             <a href="{{ url('backup') }}" class="nav-link">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>
                                     Backup
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
