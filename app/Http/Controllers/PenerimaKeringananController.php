@@ -69,7 +69,10 @@ class PenerimaKeringananController extends Controller
         }catch(Exception $e){
 
             // kembali dan memberikan pesan gagal
-            return back()->with(['gagal' => $e->getMessage()]);
+            // return back()->with(['gagal' => $e->getMessage()]);
+
+            echo $e->getMessage();
+            die;
         }
     }
 
