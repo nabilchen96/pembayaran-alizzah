@@ -141,8 +141,10 @@ class PenerimaKeringananController extends Controller
         try{
             $penerima = PenerimaKeringanan::find($id);
             
-            $path = public_path() . "/file_upload/" . $penerima->berkas_keringanan;
-            unlink($path);
+            if($penerima->berkas_keringanan != null){
+                $path = public_path() . "/file_upload/" . $penerima->berkas_keringanan;
+                unlink($path);
+            }
 
             $penerima->delete();
 
