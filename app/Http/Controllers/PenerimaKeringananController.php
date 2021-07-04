@@ -52,7 +52,7 @@ class PenerimaKeringananController extends Controller
         // berkas
         $berkas         = $request->file('berkas_keringanan');
         $nama_berkas    = $berkas->getClientOriginalName();
-        $berkas->move('file_upload', $berkas->getClientOriginalName());
+        $berkas->move('file_upload', $nama_berkas);
 
         try{
 
@@ -60,7 +60,7 @@ class PenerimaKeringananController extends Controller
                 'id_keringanan'     => $request->input('id_keringanan'),
                 'id_siswa'          => $request->input('id_siswa'),
                 'status_penerima'   => $request->input('status_penerima'),
-                'berkas_keringanan' => 'tes',
+                'berkas_keringanan' => $nama_berkas,
                 'alasan_keringanan'  => $request->input('alasan_keringanan')
             ]);
 
@@ -69,10 +69,10 @@ class PenerimaKeringananController extends Controller
         }catch(Exception $e){
 
             // kembali dan memberikan pesan gagal
-            // return back()->with(['gagal' => $e->getMessage()]);
+            return back()->with(['gagal' => $e->getMessage()]);
 
-            echo $e->getMessage();
-            die;
+            // echo $e->getMessage();
+            // die;
         }
     }
 
