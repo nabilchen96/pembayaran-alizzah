@@ -247,8 +247,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item" style="margin-left: 30px">
-                                    <a href="{{ url('laporantunggakan') }}"
-                                        class="nav-link @if(Request::is('laporantunggakan')) active @endif">
+                                    <a href="{{ url('laporanpersiswa') }}"
+                                        class="nav-link @if(Request::is('laporanpersiswa')) active @endif">
                                         <p>Laporan Persiswa</p>
                                     </a>
                                 </li>

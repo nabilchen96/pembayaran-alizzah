@@ -17,29 +17,29 @@ class LaporanTunggakanController extends Controller
         // $data   = DB::table('siswas')->select('id_siswa', 'nis', 'nama_siswa')->get();
 
         $data  = DB::table('siswas')
-                        ->join('rombels', 'rombels.id_siswa', '=', 'siswas.id_siswa')
-                        ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rombels.id_tahun')
-                        // ->join('siswas', 'siswas.id_siswa', '=', 'rombels.id_siswa')
-                        ->join('kelas', 'kelas.id_kelas', '=', 'rombels.id_kelas')
+                ->join('rombels', 'rombels.id_siswa', '=', 'siswas.id_siswa')
+                ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rombels.id_tahun')
+                // ->join('siswas', 'siswas.id_siswa', '=', 'rombels.id_siswa')
+                ->join('kelas', 'kelas.id_kelas', '=', 'rombels.id_kelas')
 
-                        ->join('set_pembayaran_kelas', 'set_pembayaran_kelas.id_kelas', '=', 'kelas.id_kelas')
-                        ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'set_pembayaran_kelas.id_jenis_pembayaran')
-                        ->where('jenis_pembayarans.id_jenis_pembayaran',  $request->input('id_jenis_pembayaran'))
-                        // ->where('siswas.id_siswa', $d->id_siswa)
-                        ->where('tahun_ajarans.status_aktif', 1)
-                        ->select(
-                            db::raw('max(siswas.id_siswa) as id_siswa'),
-                            db::raw('max(siswas.nis) as nis'),
-                            db::raw('max(siswas.nama_siswa) as nama_siswa'),
-                            db::raw('max(set_pembayaran_kelas.biaya) as biaya'),
-                            db::raw('max(tahun_ajarans.tgl_mulai) as tgl_mulai'),
-                            db::raw('max(kelas.kelas) as kelas'),
-                            db::raw('max(kelas.jenjang) as jenjang')
+                ->join('set_pembayaran_kelas', 'set_pembayaran_kelas.id_kelas', '=', 'kelas.id_kelas')
+                ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'set_pembayaran_kelas.id_jenis_pembayaran')
+                ->where('jenis_pembayarans.id_jenis_pembayaran',  $request->input('id_jenis_pembayaran'))
+                // ->where('siswas.id_siswa', $d->id_siswa)
+                ->where('tahun_ajarans.status_aktif', 1)
+                ->select(
+                    db::raw('max(siswas.id_siswa) as id_siswa'),
+                    db::raw('max(siswas.nis) as nis'),
+                    db::raw('max(siswas.nama_siswa) as nama_siswa'),
+                    db::raw('max(set_pembayaran_kelas.biaya) as biaya'),
+                    db::raw('max(tahun_ajarans.tgl_mulai) as tgl_mulai'),
+                    db::raw('max(kelas.kelas) as kelas'),
+                    db::raw('max(kelas.jenjang) as jenjang')
 
-                        )
-                        ->groupBy('siswas.id_siswa')
-                        // ->pluck('id_siswa', 'siswas.id_siswa')
-                        ->get();
+                )
+                ->groupBy('siswas.id_siswa')
+                // ->pluck('id_siswa', 'siswas.id_siswa')
+                ->get();
 
                         // dd($data);
 

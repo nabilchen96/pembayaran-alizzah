@@ -131,6 +131,10 @@ Route::get('/laporantunggakan-json', 'LaporanTunggakanController@json');
 Route::get('/laporantunggakan-export/{id}', 'LaporanTunggakanController@export');
 Route::get('surat-tunggakan/{id}', 'LaporanTunggakanController@surat');
 
+//laporan per siswa
+Route::get('/laporanpersiswa', 'LaporanPersiswaController@index');
+Route::get('/laporanpersiswa-export/{id}', 'LaporanPersiswaController@export');
+
 Route::get('backup', 'BackupController@index');
 
 });
