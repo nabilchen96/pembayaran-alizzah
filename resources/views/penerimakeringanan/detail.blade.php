@@ -116,8 +116,13 @@ active
                                 @else
                                 <td><span class="badge badge-danger">Tidak Aktif</span></td>
                                 @endif
-                                <td><a href="{{ asset('file_upload') }}/{{ $item->berkas_keringanan }}">Berkas
-                                        Keringanan</a></td>
+                                <td>
+                                    @if ($item->berkas_keringanan != null)
+                                        <a href="{{ asset('file_upload') }}/{{ $item->berkas_keringanan }}">Berkas Keringanan</a>
+                                    @else
+                                        Tidak ada berkas yang diupload
+                                    @endif
+                                </td>
                                 <td>{{ $item->alasan_keringanan }}</td>
                                 <td>
                                     <form action="{{ url('editpenerimakeringanan') }}" method="GET">

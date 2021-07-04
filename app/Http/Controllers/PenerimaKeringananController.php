@@ -45,14 +45,16 @@ class PenerimaKeringananController extends Controller
             'id_keringanan'     => 'required',
             'id_siswa'          => 'required',
             'status_penerima'   => 'required',
-            'berkas_keringanan' => 'required',
+            // 'berkas_keringanan' => 'required',
             'alasan_keringanan' => 'required'
         ]);
 
         // berkas
-        $berkas         = $request->file('berkas_keringanan');
-        $nama_berkas    = $berkas->getClientOriginalName();
-        $berkas->move('file_upload', $nama_berkas);
+        if($request->file('berkas_keringanan') != null){
+            $berkas         = $request->file('berkas_keringanan');
+            $nama_berkas    = $berkas->getClientOriginalName();
+            $berkas->move('file_upload', $nama_berkas);
+        }
 
         try{
 
@@ -60,8 +62,8 @@ class PenerimaKeringananController extends Controller
                 'id_keringanan'     => $request->input('id_keringanan'),
                 'id_siswa'          => $request->input('id_siswa'),
                 'status_penerima'   => $request->input('status_penerima'),
-                'berkas_keringanan' => $nama_berkas,
-                'alasan_keringanan'  => $request->input('alasan_keringanan')
+                'berkas_keringanan' => @$nama_berkas != null ? $nama_berkas : null,
+                'alasan_keringanan' => $request->input('alasan_keringanan')
             ]);
 
             echo '<script>window.location="detailpenerimakeringanan?id_keringanan='.$request->input('id_keringanan').'";</script>';

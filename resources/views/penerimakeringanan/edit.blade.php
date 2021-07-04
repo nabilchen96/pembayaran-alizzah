@@ -95,7 +95,11 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label"></label>
                             <div class="col-sm-7">
+                                @if ($penerima->berkas_keringanan != null)
                                 <a href="{{ asset('file_upload') }}/{{$penerima->berkas_keringanan}}" class="badge badge-info">Lihat Berkas yang diupload</a>
+                                @else
+                                <span class="badge badge-danger">Belum upload berkas</span>
+                                @endif
                             </div>
                         </div>
                         <div class="form-group row">
