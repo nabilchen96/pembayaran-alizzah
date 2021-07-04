@@ -60,7 +60,7 @@ class PenerimaKeringananController extends Controller
                 'id_keringanan'     => $request->input('id_keringanan'),
                 'id_siswa'          => $request->input('id_siswa'),
                 'status_penerima'   => $request->input('status_penerima'),
-                'berkas_keringanan' => $nama_berkas,
+                'berkas_keringanan' => 'tes',
                 'alasan_keringanan'  => $request->input('alasan_keringanan')
             ]);
 
