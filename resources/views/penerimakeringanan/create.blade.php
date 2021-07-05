@@ -152,6 +152,10 @@
 <script>
     @if($message = Session::get('gagal'))
         toastr.error("{{ $message }}")
+    @else
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}")
+        @endforeach
     @endif
 </script>
 
