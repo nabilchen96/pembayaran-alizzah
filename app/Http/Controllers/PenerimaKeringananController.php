@@ -45,7 +45,7 @@ class PenerimaKeringananController extends Controller
             'id_keringanan'     => 'required',
             'id_siswa'          => 'required',
             'status_penerima'   => 'required',
-            // 'berkas_keringanan' => 'required',
+            // 'berkas_keringanan' => 'required|max:1048',
             'alasan_keringanan' => 'required'
         ]);
 
