@@ -95,14 +95,15 @@ class TransaksiController extends Controller
                                 ->leftJoin('penerima_keringanans', 'penerima_keringanans.id_keringanan', '=', 'keringanans.id_keringanan')
                                 ->where('set_pembayaran_kelas.id_kelas', $id_kelas)
                                 ->select(
-                                    'penerima_keringanans.id_siswa',
-                                    'keringanans.keringanan',
-                                    'jenis_pembayarans.nama_pembayaran',
-                                    'kelas.id_kelas',
-                                    'set_pembayaran_kelas.biaya',
-                                    'jenis_pembayarans.id_jenis_pembayaran',
-                                    'keringanans.besaran_keringanan'
+                                    db::raw('max(penerima_keringanans.id_siswa) as id_siswa'),
+                                    db::raw('max(keringanans.keringanan) as keringanan'),
+                                    db::raw('max(jenis_pembayarans.nama_pembayaran) as nama_pembayaran'),
+                                    db::raw('max(kelas.id_kelas) as id_kelas'),
+                                    db::raw('max(set_pembayaran_kelas.biaya) as biaya'),
+                                    db::raw('max(jenis_pembayarans.id_jenis_pembayaran) as id_jenis_pembayaran'),
+                                    db::raw('max(keringanans.besaran_keringanan) as keringanan')
                                 )
+                                ->groupBy('jenis_pembayarans.id_jenis_pembayaran')
                                 ->get();
             }else{
                 $id_siswa = null;
