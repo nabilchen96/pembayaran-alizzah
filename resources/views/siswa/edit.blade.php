@@ -63,6 +63,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="" class="col-sm-2 col-form-label">Qr Code</label>
+                            <div class="col-sm-7">
+                                {!! QrCode::size(100)->generate($siswa->nis); !!}
+                                <br><br>
+                                <a href="{{ url('printqrcodesiswa') }}/{{ $siswa->id_siswa }}" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Print QrCode</a>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama Lengkap<sup class="text-red">*</sup></label>
                             <div class="col-sm-7">
                             <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror" placeholder="Nama Lengkap" name="nama_siswa" value="{{ $siswa->nama_siswa }}">
