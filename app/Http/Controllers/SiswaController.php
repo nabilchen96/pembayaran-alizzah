@@ -144,4 +144,16 @@ class SiswaController extends Controller
 
         
     }
+
+    public function cetakqrcodeallsiswa(){
+        $siswa = Siswa::all();
+        return view('siswa.cetakallqrcode')->with('siswa', $siswa);
+    }
+
+    public function cetakqrcodesiswa($id){
+
+        $data = Siswa::find($id);
+
+        return view('siswa.cetakqrcodesiswa')->with('data', $data);
+    }
 }

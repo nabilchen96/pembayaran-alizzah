@@ -47,6 +47,7 @@
                     <a href="{{ url('tambahsiswa') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tambah</a>
                     <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Export</a>
                     <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#importsiswa"><i class="fas fa-file-excel"></i> Import</a>
+                    <a href="{{ url('cetakqrcode-allsiswa') }}" class="btn btn-sm btn-success"><i class="fas fa-print"></i> Cetak QrCode</a>
                     <div class="modal fade" id="importsiswa" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -95,10 +96,6 @@
                                 <th>NIS</th>
                                 <th>Nama Siswa</th>
                                 <th>Jenis Kelamin</th>
-                                <th>No Telp</th>
-                                <th>Nama Ayah</th>
-                                <th>Nama Ibu</th>
-                                <th>Alamat</th>
                                 <th width="10px"></th>
                                 <th width="10px"></th>
                             </tr>
@@ -142,10 +139,9 @@
                     jk = data 
                     return data == 1 ? 'Laki-laki' : 'Perempuan' 
                 }},
-                { data: 'no_telp',      name: 'no_telp',    render: function(data){ return no_telp = data }},
-                { data: 'nama_ayah',    name: 'nama_ayah',  render: function(data){ return nama_ayah = data }},
-                { data: 'nama_ibu',     name: 'nama_ibu',   render: function(data){ return nama_ibu = data }},
-                { data: 'alamat',       name: 'alamat',     render: function(data){ return alamat = data}},
+                // { data: 'no_telp',      name: 'no_telp',    render: function(data){ return no_telp = data }},
+                // { data: 'nama_ayah',    name: 'nama_ayah',  render: function(data){ return nama_ayah = data }},
+                // { data: 'nama_ibu',     name: 'nama_ibu',   render: function(data){ return nama_ibu = data }},
                 { name: 'edit',         render: function(data){ 
                     return `<a href="{{ url('editsiswa') }}/`+(id)+`" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>`
                 }},

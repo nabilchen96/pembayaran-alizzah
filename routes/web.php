@@ -44,6 +44,8 @@ Route::post('/updatesiswa', 'SiswaController@update');
 Route::get('/hapussiswa/{id}', 'SiswaController@destroy');
 Route::get('/siswa-export', 'SiswaController@export');
 Route::post('/siswa-import', 'SiswaController@import');
+Route::get('cetakqrcode-allsiswa', 'SiswaController@cetakqrcodeallsiswa');
+Route::get('/printqrcodesiswa/{id}', 'SiswaController@cetakqrcodesiswa');
 
 Route::get('/pegawai', 'PegawaiController@index');
 Route::get('/tambahpegawai', 'PegawaiController@create');
