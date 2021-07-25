@@ -129,6 +129,7 @@ class TransaksiController extends Controller
             'tgl_transaksi'         => 'required',
             'id_kelas'              => 'required',
         ]);
+        
 
         $jumlah_bayar   = $request->input('jumlah_bayar');
         $kosong_bayar   = 0;

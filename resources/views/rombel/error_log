@@ -1,0 +1,4 @@
+[19-Jul-2021 11:07:24 UTC] PHP Fatal error:  Uncaught Error: Class 'DB' not found in /home/pptqaliz/sisfo.pptq-alizzah.com/resources/views/rombel/index.blade.php:70
+Stack trace:
+#0 {main}
+  thrown in /home/pptqaliz/sisfo.pptq-alizzah.com/resources/views/rombel/index.blade.php on line 70
