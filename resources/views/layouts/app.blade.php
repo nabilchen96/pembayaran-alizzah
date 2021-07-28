@@ -224,21 +224,21 @@
 
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item" style="margin-left: 30px">
+                                {{-- <li class="nav-item" style="margin-left: 30px">
                                     <a href="#" class="nav-link">
                                         <p>Setting Aturan</p>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item" style="margin-left: 30px">
                                     <a href="{{ route('uangsaku.index') }}" class="nav-link">
                                         <p>Uang Saku</p>
                                     </a>
                                 </li>
-                                <li class="nav-item" style="margin-left: 30px">
+                                {{-- <li class="nav-item" style="margin-left: 30px">
                                     <a href="#" class="nav-link">
                                         <p>Transaksi</p>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         <li class="nav-item has-treeview @stack('laporan')">
