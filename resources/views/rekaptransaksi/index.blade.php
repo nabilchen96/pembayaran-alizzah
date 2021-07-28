@@ -154,6 +154,7 @@
         $('#table-rekap').DataTable({
             processing: true,
             serverSide: true,
+            ordering: false,
             // order: [[2, 'DESC']],
             ajax: 'rekaptransaksi-json',
             columns: [

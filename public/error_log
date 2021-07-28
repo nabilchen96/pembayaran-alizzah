@@ -1,0 +1,136 @@
+[25-Jul-2021 05:57:42 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 05:57:52 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 05:58:03 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 05:58:04 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:11:16 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:11:17 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:11:18 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:11:19 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:11:20 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:11:21 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:14:25 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:14:34 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:14:37 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:15:18 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:15:19 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:15:20 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
+[25-Jul-2021 06:15:21 UTC] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php:809
+Stack trace:
+#0 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(809): ReflectionClass->__construct('view')
+#1 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(691): Illuminate\Container\Container->build('view')
+#2 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php(637): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(781): Illuminate\Container\Container->make('view', Array)
+#5 /home/pptqaliz/sisfo.pptq-al in /home/pptqaliz/sisfo.pptq-alizzah.com/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 811
