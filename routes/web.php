@@ -103,6 +103,9 @@ Route::resource('uangsaku', UangSakuController::class);
 Route::get('transaksiuangsaku/{id}', 'UangSakuController@detailtransaksiuangsaku');
 Route::post('tambahtransaksiuangsaku', 'UangSakuController@tambahtransaksiuangsaku');
 
+//transaksi kantin
+Route::get('transaksikantin', 'TransaksiKantinController@index');
+
 Route::get('/transaksi', 'TransaksiController@index');
 Route::get('/transaksi-json', 'TransaksiController@json');
 Route::get('/tambah-transaksi', 'TransaksiController@create');
