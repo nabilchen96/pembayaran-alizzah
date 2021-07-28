@@ -98,6 +98,11 @@ Route::post('/updategaji', 'SetGajiController@update');
 Route::get('/destroygaji/{id}', 'SetGajiController@destroygaji');
 Route::get('/setgaji-export', 'SetGajiController@export');
 
+//uang saku
+Route::resource('uangsaku', UangSakuController::class);
+Route::get('transaksiuangsaku/{id}', 'UangSakuController@detailtransaksiuangsaku');
+Route::post('tambahtransaksiuangsaku', 'UangSakuController@tambahtransaksiuangsaku');
+
 Route::get('/transaksi', 'TransaksiController@index');
 Route::get('/transaksi-json', 'TransaksiController@json');
 Route::get('/tambah-transaksi', 'TransaksiController@create');

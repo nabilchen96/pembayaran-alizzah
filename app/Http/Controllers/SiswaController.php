@@ -15,8 +15,7 @@ use Importer;
 class SiswaController extends Controller
 {
     public function json(){
-        // return Datatables::of(Siswa::all())->make(true);
-
+        
         return DataTables::of(Siswa::all())
                 ->toJson();
     }
