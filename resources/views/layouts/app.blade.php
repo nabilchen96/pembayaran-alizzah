@@ -282,6 +282,12 @@
                         </li>
                         @endif
                         <li class="nav-item">
+                            <a href="{{ url('transaksikantin') }}" class="nav-link  @if(Request::is('transaksikantin')) active @endif">
+                                <i class="nav-icon fas fa-coins"></i>
+                                <p>Transaksi Kantin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="nav-icon fas fa-arrow-left"></i>
