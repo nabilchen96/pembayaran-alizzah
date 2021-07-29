@@ -86,11 +86,18 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Kelas</label>
-                                                <input type="text" class="form-control mt-1" disabled>
+                                                <input type="text" class="form-control mt-1" disabled id="kelas">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Saldo</label>
-                                                <input type="text" class="form-control mt-1" disabled>
+                                                <input type="number" class="form-control mt-1" disabled id="saldo">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Jenis Transaksi</label>
+                                                <select name="jenis_transaksi" class="form-control">
+                                                    <option value="1">Kebutuhan Khusus</option>
+                                                    <option value="0">Jajan Harian</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Jumlah Transaksi</label>
@@ -102,6 +109,9 @@
                                                     class="form-control"></textarea>
                                             </div>
                                         </form>
+                                    </div>
+                                    <div id="onfail" class="d-none">
+                                        <p class="alert alert-danger">Maaf, data yang anda cari tidak ditemukan!</p>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -167,20 +177,28 @@
         document.getElementById('onsukses').setAttribute('class', 'd-none')
         document.getElementById('reader').removeAttribute('class', 'd-none')
         document.getElementById('submit').setAttribute('class', 'd-none')
+        document.getElementById('onfail').setAttribute('class', 'd-none')
     }
 
-    function isiotomatis(){
+    function isiotomatis(content){
         $.ajax({
-            url: "{{ url('siswa') }}/"+12
-        }).success(function(data){
-
+            url: "{{ url('carisiswa') }}/"+content
+        }).done(function(data){
             obj = JSON.parse(data);
+
+            document.getElementById('reader').setAttribute('class', 'd-none')
+            document.getElementById('onsukses').removeAttribute('class', 'd-none')
 
             document.getElementById('nama_siswa').value = obj.nama_siswa
             document.getElementById('nis').value = obj.nis
-            
+            document.getElementById('kelas').value = obj.kelas+' '+obj.jenjang
+            document.getElementById('saldo').value = obj.saldo == null ? 0 : obj.saldo
+
             document.getElementById('submit').removeAttribute('class', 'd-none')
-        }) 
+        }).fail(function(data, xhr){
+            document.getElementById('reader').setAttribute('class', 'd-none')
+            document.getElementById('onfail').removeAttribute('class', 'd-none')
+        })
     }
 
     let scanner = new Instascan.Scanner({ 
@@ -189,10 +207,7 @@
     });
 
     scanner.addListener('scan', function (content) {
-        document.getElementById('reader').setAttribute('class', 'd-none')
-        document.getElementById('onsukses').removeAttribute('class', 'd-none')
-
-        // isiotomatis()
+        isiotomatis(content)
     });
 
     Instascan.Camera.getCameras().then(function (cameras) {
