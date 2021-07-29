@@ -185,16 +185,22 @@
             url: "{{ url('carisiswa') }}/"+content
         }).done(function(data){
             obj = JSON.parse(data);
+            // console.log(data)
 
-            document.getElementById('reader').setAttribute('class', 'd-none')
-            document.getElementById('onsukses').removeAttribute('class', 'd-none')
+            if(obj == null){
+                document.getElementById('reader').setAttribute('class', 'd-none')
+                document.getElementById('onfail').removeAttribute('class', 'd-none')
+            }else{
+                document.getElementById('reader').setAttribute('class', 'd-none')
+                document.getElementById('onsukses').removeAttribute('class', 'd-none')
 
-            document.getElementById('nama_siswa').value = obj.nama_siswa
-            document.getElementById('nis').value = obj.nis
-            document.getElementById('kelas').value = obj.kelas+' '+obj.jenjang
-            document.getElementById('saldo').value = obj.saldo == null ? 0 : obj.saldo
+                document.getElementById('nama_siswa').value = obj.nama_siswa
+                document.getElementById('nis').value = obj.nis
+                document.getElementById('kelas').value = obj.kelas+' '+obj.jenjang
+                document.getElementById('saldo').value = obj.saldo == null ? 0 : obj.saldo
 
-            document.getElementById('submit').removeAttribute('class', 'd-none')
+                document.getElementById('submit').removeAttribute('class', 'd-none')
+            }
         }).fail(function(data, xhr){
             document.getElementById('reader').setAttribute('class', 'd-none')
             document.getElementById('onfail').removeAttribute('class', 'd-none')
@@ -212,7 +218,7 @@
 
     Instascan.Camera.getCameras().then(function (cameras) {
 
-        scanner.start(cameras[1]);
+        scanner.start(cameras[0]);
 
     }).catch(function (e) {
 
