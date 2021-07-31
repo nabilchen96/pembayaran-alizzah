@@ -37,7 +37,7 @@ class UangSakuController extends Controller
 
     public function detailtransaksiuangsaku($id){
 
-        // if(request()->ajax()){
+        if(request()->ajax()){
             $data = DB::table('transaksi_uang_sakus')
                         ->join('siswas', 'siswas.id_siswa', '=', 'transaksi_uang_sakus.id_siswa')
                         ->where('siswas.id_siswa', $id)
@@ -47,11 +47,30 @@ class UangSakuController extends Controller
                             'siswas.nis',
                             'transaksi_uang_sakus.*'
                         )
-
+                        ->groupBy('transaksi_uang_sakus.created_at')
                         ->get();
+                        
+            $pemasukan      = 0;
+            $pengeluaran    = 0;
+            $data_trx       = [];
 
-            return DataTables::of($data)->toJson();
-        // }
+            foreach($data as $d){
+                $d->jenis_transaksi == 'masuk' ? $pemasukan = $d->jumlah + $pemasukan : $pengeluaran = $d->jumlah + $pengeluaran;
+    
+                $saldo = $pemasukan - $pengeluaran;
+    
+                $rekap_trx[] = array(
+                    'id_transaksi_uang_saku'    => $d->id_transaksi_uang_saku,
+                    'created_at'                => $d->created_at,
+                    'jenis_transaksi'           => $d->jenis_transaksi,
+                    'jumlah'                    => $d->jumlah,
+                    'keterangan'                => $d->keterangan,
+                    'saldo'                     => $saldo
+                );
+            }
+
+            return DataTables::of($rekap_trx)->toJson();
+        }
 
         return view('uangsaku.transaksiuangsaku');
     }
