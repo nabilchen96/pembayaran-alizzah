@@ -12,6 +12,21 @@ class RekapPemasukanController extends Controller
 {
 
     public function json(){
+
+        //klasifikasikan pembayaran siswa sesuai parameter bulan dan kelas
+        //1. ambil data rombel
+        //2. ambil data pembayaran bulanan saja dari siswa
+        //3. lakukan looping
+        //4. setiap looping jumlahkan total pembayaran tahun ini - total bulan berjalan
+
+        /*
+            //jika 0 maka sudah bayar
+            2.000.000 - (2 * 1.000.000) = 0
+
+            
+        */
+        
+
         $transaksi  = DB::table('transaksis')
                         ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'transaksis.id_jenis_pembayaran')
                         ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'transaksis.id_tahun')
@@ -35,7 +50,10 @@ class RekapPemasukanController extends Controller
     }
 
     public function index(){
-        return view('rekappemasukan.index');
+
+        $kelas = DB::table('kelas')->get();
+
+        return view('rekappemasukan.index')->with('kelas', $kelas);
     }
 
     public function export(){
