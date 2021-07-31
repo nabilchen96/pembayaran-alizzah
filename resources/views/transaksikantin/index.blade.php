@@ -220,7 +220,7 @@
 
     Instascan.Camera.getCameras().then(function (cameras) {
 
-        scanner.start(cameras[0]);
+        scanner.start(cameras[1]);
 
     }).catch(function (e) {
 
