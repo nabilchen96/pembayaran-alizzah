@@ -149,11 +149,15 @@ menu-open
                 { data: 'created_at',   name: 'created_at' },
                 { data: 'keterangan',   name: 'keterangan' },
                 { data: 'jenis_transaksi', name: 'masuk', render: function(data, type, row, meta){
-                    data == 'masuk' ? pemasukan = row.jumlah + pemasukan : pemasukan    
+                    if(data == 'masuk'){
+                        pemasukan = row.jumlah + pemasukan
+                    }   
                     return data == 'masuk' ? "Rp. "+Intl.NumberFormat().format(row.jumlah) : '-'
                 }},
                 { data: 'jenis_transaksi', name: 'keluar', render: function(data, type, row, meta){
-                    data == 'keluar' ? pengeluaran = row.jumlah + pengeluaran : pengeluaran
+                    if(data == 'keluar'){
+                        pengeluaran = row.jumlah + pengeluaran
+                    }
                     return data == 'keluar' ? "Rp. "+Intl.NumberFormat().format(row.jumlah) : '-'
                 }},
                 { data: 'jenis_transaksi', name: 'saldo', render: function(data, type, row, meta){
