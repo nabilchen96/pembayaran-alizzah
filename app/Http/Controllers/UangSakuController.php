@@ -51,7 +51,7 @@ class UangSakuController extends Controller
                             'siswas.nis',
                             'transaksi_uang_sakus.*'
                         )
-                        // ->orderBy('transaksi_uang_sakus.created_at', 'DESC')
+                        ->orderBy('transaksi_uang_sakus.created_at', 'ASC')
                         ->get();
 
             foreach($data as $k => $d){
