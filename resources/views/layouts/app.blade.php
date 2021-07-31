@@ -173,7 +173,7 @@
                                 <p>Rombel</p>
                             </a>
                         </li>
-                        @else
+                        @elseif(auth::user()->role == 'admin-keuangan')
                         <li class="nav-item">
                             <a href="{{ url('jeniskeringanan') }}"
                                 class="nav-link @if(Request::is('jeniskeringanan')) active @endif">
@@ -280,13 +280,15 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
+                        @elseif(auth::user()->role == 'admin-kantin')
                         <li class="nav-item">
                             <a href="{{ url('transaksikantin') }}" class="nav-link  @if(Request::is('transaksikantin')) active @endif">
                                 <i class="nav-icon fas fa-coins"></i>
                                 <p>Transaksi Kantin</p>
                             </a>
                         </li>
+                        @endif
+                        
                         <li class="nav-item">
                             <a href="{{ route('logout') }}" class="nav-link"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

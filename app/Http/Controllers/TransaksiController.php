@@ -28,6 +28,7 @@ class TransaksiController extends Controller
                             DB::raw('MAX(nama_pembayar) as nama_pembayar')
                         )
                         ->groupBy('kd_nota')
+                        ->orderBy('transaksis.tgl_transaksi', 'DESC')
                         ->get();
 
         return Datatables::of($transaksi)->make(true);

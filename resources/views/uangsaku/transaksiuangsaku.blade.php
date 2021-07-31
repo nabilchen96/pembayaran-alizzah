@@ -24,13 +24,13 @@ menu-open
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <ol class="breadcrumb" style="padding-top: 5px">
-                                <li class="breadcrumb-item">Dashboard</li>
-                                <li class="breadcrumb-item active">Data Master</li>
-                                <li class="breadcrumb-item active">Siswa</li>
+                                <li class="breadcrumb-item">Uang Saku Siswa</li>
+                                <li class="breadcrumb-item">Uang Saku</li>
+                                <li class="breadcrumb-item active">History Transaksi Uang Saku</li>
                             </ol>
                         </div>
                         <div class="col-sm-6">
-                            <h1 class="float-sm-right"><i class="fas fa-cog"></i> Siswa</h1>
+                            <h1 class="float-sm-right"><i class="fas fa-cog"></i> History Transaksi Uang Saku</h1>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,8 @@ menu-open
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i
-                            class="fas fa-file-excel"></i>Export</a>
+                    {{-- <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i
+                            class="fas fa-file-excel"></i>Export</a> --}}
 
                     <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambahtahun"><i
                             class="fas fa-plus"></i> Tambah</a>

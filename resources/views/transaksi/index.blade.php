@@ -157,7 +157,8 @@
     $(function() {
         let id, tgl_transaksi, pembayaran, jumlah_bayar, nama_pembayar, untuk_siswa;
         $('#table-tahun').DataTable({
-            order: [[2, 'DESC']],
+            // order: [[2, 'DESC']],
+            ordering: false,
             processing: true,
             serverSide: true,
             ajax: 'transaksi-json',

@@ -25,6 +25,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                @if(auth::user()->role == 'admin-keuangan')
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-info">
@@ -39,6 +40,7 @@
                         <a href="{{ url('rekaptransaksi') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                @endif
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->

@@ -34,7 +34,6 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <ol class="breadcrumb" style="padding-top: 5px">
-                                <li class="breadcrumb-item">Dashboard</li>
                                 <li class="breadcrumb-item active">Transaksi Kantin</li>
                             </ol>
                         </div>
@@ -53,8 +52,8 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i>
-                        Export</a>
+                    {{-- <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i>
+                        Export</a> --}}
 
                     <button href="#" data-target="#modaltambah" data-toggle="modal" class="btn btn-sm btn-primary"><i
                             class="fas fa-plus"></i>Tambah Transaksi</button>
@@ -69,16 +68,17 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body">
-                                    <video id="reader">
+                                <form action="{{ url('tambahtransaksikantin') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <video id="reader">
 
-                                    </video>
-                                    <div id="onsukses" class="d-none">
-                                        <form action="">
+                                        </video>
+                                        <div id="onsukses" class="d-none">
                                             <div class="form-group">
                                                 <label for="">Nama</label>
                                                 <input type="text" id="nama_siswa" class="form-control mt-1" readonly>
-                                                <input type="hidden" name="id_siswa">
+                                                <input type="hidden" name="id_siswa" id="id_siswa">
                                             </div>
                                             <div class="form-group">
                                                 <label for="">NIS</label>
@@ -94,34 +94,36 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Jenis Transaksi</label>
-                                                <select name="jenis_transaksi" class="form-control">
-                                                    <option value="1">Kebutuhan Khusus</option>
+                                                <select name="jenis_transaksi" id="jenis_transaksi" class="form-control"
+                                                    onchange="setbatasjajan()" required>
+                                                    <option value="">pilih jenis transaksi</option>
                                                     <option value="0">Jajan Harian</option>
+                                                    <option value="1">Kebutuhan Khusus</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Jumlah Transaksi</label>
-                                                <input type="number" class="form-control">
+                                                <input type="number" name="jumlah" class="form-control" id="maksimal_transaksi"
+                                                    min="1">
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="">Keterangan</label>
                                                 <textarea name="keterangan" id="" cols="30" rows="3"
                                                     class="form-control"></textarea>
-                                            </div>
-                                        </form>
+                                            </div> --}}
+                                        </div>
+                                        <div id="onfail" class="d-none">
+                                            <p class="alert alert-danger">Maaf, data yang anda cari tidak ditemukan!</p>
+                                        </div>
                                     </div>
-                                    <div id="onfail" class="d-none">
-                                        <p class="alert alert-danger">Maaf, data yang anda cari tidak ditemukan!</p>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" onclick="scanlagi()">Scan
+                                            Lagi</button>
+                                        <div id="submit" class="d-none">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" onclick="scanlagi()">Scan
-                                        Lagi</button>
-                                    <div id="submit" class="d-none">
-                                        <button type="button" onclick="isiotomatis()"
-                                            class="btn btn-primary">Submit</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -146,7 +148,6 @@
                                     <th>Nama Siswa</th>
                                     <th>Keterangan</th>
                                     <th>Jumlah Transaksi</th>
-                                    <th width="10px"></th>
                                 </tr>
                             </thead>
                         </table>
@@ -171,7 +172,7 @@
         toastr.error("{{ $message }}")
     @endif
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
 <script>
     function scanlagi(){
         document.getElementById('onsukses').setAttribute('class', 'd-none')
@@ -195,6 +196,7 @@
                 document.getElementById('onsukses').removeAttribute('class', 'd-none')
 
                 document.getElementById('nama_siswa').value = obj.nama_siswa
+                document.getElementById('id_siswa').value = obj.id_siswa
                 document.getElementById('nis').value = obj.nis
                 document.getElementById('kelas').value = obj.kelas+' '+obj.jenjang
                 document.getElementById('saldo').value = obj.saldo == null ? 0 : obj.saldo
@@ -218,12 +220,49 @@
 
     Instascan.Camera.getCameras().then(function (cameras) {
 
-        scanner.start(cameras[1]);
+        scanner.start(cameras[0]);
 
     }).catch(function (e) {
 
       console.error(e);
 
+    });
+
+    function setbatasjajan(){
+
+        var saldo           = document.getElementById('saldo').value
+        var jenis_transaksi = document.getElementById('jenis_transaksi').value
+        var batas           = 0
+
+        if(jenis_transaksi == 0){
+            saldo >= 7000 ? batas = 7000 : batas = saldo
+        }else{
+            batas = saldo
+        }
+
+        document.getElementById('maksimal_transaksi').setAttribute('placeholder', 'batas maksimal adalah '+batas)
+        document.getElementById('maksimal_transaksi').setAttribute('max', batas)
+    }
+</script>
+<script>
+    $('#table-siswa').DataTable({
+        processing: true,
+        serverSide: true,
+        ordering: false,
+        ajax: '{!! url()->current() !!}',
+        columns: [
+            { data: 'id_siswa',     name:'id_siswa',    render: function (data, type, row, meta) {
+                id = data
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }},
+            { data: 'created_at', name: 'created_at'},
+            { data: 'nis',          name: 'nis',        render: function(data){ return nis = data }},
+            { data: 'nama_siswa',   name: 'nama_siswa', render: function(data){ return nama = data }},
+            { data: 'keterangan', name: 'keterangan'},
+            { data: 'jumlah',        name: 'jumlah',      render: function(data){
+                return "Rp. "+Intl.NumberFormat().format(data)
+                }}
+        ]
     });
 </script>
 @endpush
