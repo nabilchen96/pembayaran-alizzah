@@ -37,7 +37,7 @@ class UangSakuController extends Controller
 
     public function detailtransaksiuangsaku($id){
 
-        if(request()->ajax()){
+        // if(request()->ajax()){
             $data = DB::table('transaksi_uang_sakus')
                         ->join('siswas', 'siswas.id_siswa', '=', 'transaksi_uang_sakus.id_siswa')
                         ->where('siswas.id_siswa', $id)
@@ -47,11 +47,11 @@ class UangSakuController extends Controller
                             'siswas.nis',
                             'transaksi_uang_sakus.*'
                         )
-                        // ->orderBy('transaksi_uang_sakus.created_at', 'DESC')
+
                         ->get();
 
             return DataTables::of($data)->toJson();
-        }
+        // }
 
         return view('uangsaku.transaksiuangsaku');
     }
