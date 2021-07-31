@@ -106,6 +106,7 @@ Route::post('tambahtransaksiuangsaku', 'UangSakuController@tambahtransaksiuangsa
 //transaksi kantin
 Route::get('transaksikantin', 'TransaksiKantinController@index');
 Route::get('carisiswa/{id}', 'TransaksiKantinController@carisiswa');
+Route::post('tambahtransaksikantin', 'TransaksiKantinController@store');
 
 Route::get('/transaksi', 'TransaksiController@index');
 Route::get('/transaksi-json', 'TransaksiController@json');

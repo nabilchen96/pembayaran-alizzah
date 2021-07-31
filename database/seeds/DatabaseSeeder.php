@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use DB;
+// use DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -29,18 +29,26 @@ class DatabaseSeeder extends Seeder
 
         // }
 
-        DB::table('users')->insert([
-            'name'  => 'admin',
-            'role'  => 'admin-master',
-            'email' => 'admin@alizzah.com',
-            'password'  => Hash::make('password'),
-            'jk'        => '1',
-        ]);
+        // DB::table('users')->insert([
+        //     'name'  => 'admin',
+        //     'role'  => 'admin-master',
+        //     'email' => 'admin@alizzah.com',
+        //     'password'  => Hash::make('password'),
+        //     'jk'        => '1',
+        // ]);
+
+        // DB::table('users')->insert([
+        //     'name'  => 'keuangan',
+        //     'role'  => 'admin-keuangan',
+        //     'email' => 'keuangan@alizzah.com',
+        //     'password'  => Hash::make('password'),
+        //     'jk'        => '1', 
+        // ]);
 
         DB::table('users')->insert([
-            'name'  => 'keuangan',
-            'role'  => 'admin-keuangan',
-            'email' => 'keuangan@alizzah.com',
+            'name'      => 'kantin',
+            'role'      => 'admin-kantin',
+            'email'     => 'kantin@alizzah.com',
             'password'  => Hash::make('password'),
             'jk'        => '1', 
         ]);

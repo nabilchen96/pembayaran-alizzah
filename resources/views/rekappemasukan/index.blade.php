@@ -141,8 +141,8 @@
         $('#table-tahun').DataTable({
             processing: true,
             serverSide: true,
+            ordering: false,
             ajax: 'rekappemasukan-json',
-            order: [[0,"desc"]],
             columns: [
                 { data: 'id_transaksi', name:'id_transaksi', render: function (data, type, row, meta) {
                     id = data
