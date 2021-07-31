@@ -52,22 +52,23 @@ class UangSakuController extends Controller
                         
             $pemasukan      = 0;
             $pengeluaran    = 0;
-            $data_trx       = [];
+            $rekap_trx       = [];
 
-            foreach($data as $d){
-                $d->jenis_transaksi == 'masuk' ? $pemasukan = $d->jumlah + $pemasukan : $pengeluaran = $d->jumlah + $pengeluaran;
-    
-                $saldo = $pemasukan - $pengeluaran;
-    
-                $rekap_trx[] = array(
-                    'id_transaksi_uang_saku'    => $d->id_transaksi_uang_saku,
-                    'created_at'                => $d->created_at,
-                    'jenis_transaksi'           => $d->jenis_transaksi,
-                    'jumlah'                    => $d->jumlah,
-                    'keterangan'                => $d->keterangan,
-                    'saldo'                     => $saldo
-                );
-            }
+                foreach($data as $d){
+                    $d->jenis_transaksi == 'masuk' ? $pemasukan = $d->jumlah + $pemasukan : $pengeluaran = $d->jumlah + $pengeluaran;
+        
+                    $saldo = $pemasukan - $pengeluaran;
+        
+                    $rekap_trx[] = array(
+                        'id_transaksi_uang_saku'    => $d->id_transaksi_uang_saku,
+                        'created_at'                => $d->created_at,
+                        'jenis_transaksi'           => $d->jenis_transaksi,
+                        'jumlah'                    => $d->jumlah,
+                        'keterangan'                => $d->keterangan,
+                        'saldo'                     => $saldo
+                    );
+                }
+            
 
             return DataTables::of($rekap_trx)->toJson();
         }

@@ -147,6 +147,7 @@ Route::get('surat-tunggakan/{id}', 'LaporanTunggakanController@surat');
 Route::get('/laporanpersiswa', 'LaporanPersiswaController@index');
 Route::get('/laporanpersiswa-export/{id}', 'LaporanPersiswaController@export');
 
-Route::get('backup', 'BackupController@index');
+//laporan bayar bulanan
+Route::get('/laporanbayarbulanan', 'LaporanBayarBulananController@index');
 
 });
