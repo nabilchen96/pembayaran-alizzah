@@ -148,21 +148,18 @@ menu-open
                 }},
                 { data: 'created_at',   name: 'created_at' },
                 { data: 'keterangan',   name: 'keterangan' },
-                {
-                    data: null, name: 'jenis_transaksi', render: function (data, type, row, meta) {
-                        return row.jenis_transaksi == 'masuk' ? "Rp. "+Intl.NumberFormat().format(row.jumlah) : '-'
-                    }
-                },
-                {
-                    data: null, name: 'jenis_transaksi', render: function (data, type, row, meta) {
-                        return row.jenis_transaksi == 'keluar' ? "Rp. "+Intl.NumberFormat().format(row.jumlah) : '-'
-                    }
-                },
-                {
-                    data: 'saldo', name: 'saldo', render: function(data){
-                        return "Rp. "+Intl.NumberFormat().format(data)
-                    }
-                }
+                { data: 'jenis_transaksi', name: 'masuk', render: function(data, type, row, meta){
+                    data == 'masuk' ? pemasukan = row.jumlah + pemasukan : pemasukan + 0    
+                    return data == 'masuk' ? "Rp. "+Intl.NumberFormat().format(row.jumlah) : '-'
+                }},
+                { data: 'jenis_transaksi', name: 'keluar', render: function(data, type, row, meta){
+                    data == 'keluar' ? pengeluaran = row.jumlah + pengeluaran : pengeluaran + 0
+                    return data == 'keluar' ? "Rp. "+Intl.NumberFormat().format(row.jumlah) : '-'
+                }},
+                { data: 'jenis_transaksi', name: 'saldo', render: function(data, type, row, meta){
+                    total = pemasukan - pengeluaran
+                    return "Rp. "+Intl.NumberFormat().format(total)
+                }}
             ]
         });
         total
