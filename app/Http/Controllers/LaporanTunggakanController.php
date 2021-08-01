@@ -121,7 +121,9 @@ class LaporanTunggakanController extends Controller
                 $diff           = date_diff( date_create($d->tgl_mulai), date_create('m'));
 
 
-                $hutang_tunggakan    = (@$d->biaya - @$keringanan->besaran_keringanan) * ($diff->m + 1) - $transaksi->jumlah_tunggakan;
+                $hutang_tunggakan    = (@$d->biaya - @$keringanan->besaran_keringanan) * ($diff->m + 2) - $transaksi->jumlah_tunggakan;
+
+                // dd($diff->m + 1);
             }
             
             $siswa[] = array(
