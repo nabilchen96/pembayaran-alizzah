@@ -21,11 +21,15 @@ class PenerimaKeringananController extends Controller
         return view('penerimakeringanan.index')->with('keringanan', $keringanan);
     }
 
+
     public function detail(Request $request){
         $penerimakeringanan = DB::table('penerima_keringanans')
                                 ->join('siswas', 'siswas.id_siswa','=','penerima_keringanans.id_siswa')
+                                ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'penerima_keringanans.id_tahun')
                                 ->where('penerima_keringanans.id_keringanan', $request->input('id_keringanan'))
+                                ->where('tahun_ajarans.status_aktif', '1')
                                 ->get();
+
         $keringanan         = Keringanan::find($request->input('id_keringanan'));
 
         return view('penerimakeringanan.detail')
@@ -63,10 +67,13 @@ class PenerimaKeringananController extends Controller
                 'id_siswa'          => $request->input('id_siswa'),
                 'status_penerima'   => $request->input('status_penerima'),
                 'berkas_keringanan' => @$nama_berkas != null ? $nama_berkas : null,
-                'alasan_keringanan' => $request->input('alasan_keringanan')
+                'alasan_keringanan' => $request->input('alasan_keringanan'),
+                'id_tahun'          => DB::table('tahun_ajarans')->where('status_aktif', '1')->value('id_tahun')
             ]);
 
-            echo '<script>window.location="detailpenerimakeringanan?id_keringanan='.$request->input('id_keringanan').'";</script>';
+            // echo '<script>window.location="detailpenerimakeringanan?id_keringanan='.$request->input('id_keringanan').'";</script>';
+
+            return redirect('detailpenerimakeringanan?id_keringanan='.$request->id_keringanan)->with(['sukses' => 'Data berhasil disimpan!']);
 
         }catch(Exception $e){
 
@@ -124,10 +131,12 @@ class PenerimaKeringananController extends Controller
                 'id_siswa'          => $request->input('id_siswa'),
                 'status_penerima'   => $request->input('status_penerima'),
                 'berkas_keringanan' => $nama_berkas,
-                'alasan_keringanan' => $request->input('alasan_keringanan')
+                'alasan_keringanan' => $request->input('alasan_keringanan'),
+                'id_tahun'          => DB::table('tahun_ajarans')->where('status_aktif', '1')->value('id_tahun')
             ]);
 
-            echo '<script>window.location="detailpenerimakeringanan?id_keringanan='.$request->input('id_keringanan').'";</script>';
+            // echo '<script>window.location="detailpenerimakeringanan?id_keringanan='.$request->input('id_keringanan').'";</script>';
+            return redirect('detailpenerimakeringanan?id_keringanan='.$request->id_keringanan)->with(['sukses' => 'Data berhasil disimpan!']);
 
         }catch(Exception $e){
 

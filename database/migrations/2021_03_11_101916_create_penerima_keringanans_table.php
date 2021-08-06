@@ -20,6 +20,7 @@ class CreatePenerimaKeringanansTable extends Migration
             $table->enum('status_penerima', [1, 0]);
             $table->string('berkas_keringanan')->nullable();
             $table->string('alasan_keringanan')->nullable();
+            $table->bigInteger('id_tahun');
             $table->timestamps();
         });
     }

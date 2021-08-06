@@ -112,7 +112,7 @@ active
                                     <th>NIS</th>
                                     <th>Nama Siswa</th>
                                     <th>Transkasi Terakhir</th>
-                                    <th>Biaya Bulanan</th>
+                                    {{-- <th>Biaya Bulanan</th> --}}
                                     <th>Status Pembayaran</th>
                                     <th width="20px">History</th>
                                 </tr>
@@ -125,7 +125,7 @@ active
                                     <td>{{ @$item['nama_siswa'] }}</td>
                                     <td>{{ @$item['tgl_transaksi'] != null ? date('d-m-Y', strtotime($item['tgl_transaksi'])) : '' }}
                                     </td>
-                                    <td>Rp. {{ @number_format($item['biaya_bulanan']) }}</td>
+                                    {{-- <td>Rp. {{ @number_format($item['biaya_bulanan']) }}</td> --}}
                                     <td>
                                         @if (@$item['status'] == 'Sudah Dibayar')
                                             <span class="badge badge-success">Sudah Dibayar</span>

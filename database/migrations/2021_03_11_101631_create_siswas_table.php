@@ -22,6 +22,8 @@ class CreateSiswasTable extends Migration
             $table->string('nama_ayah')->nullable();
             $table->string('nama_ibu')->nullable();
             $table->text('alamat')->nullable();
+            $table->string('status')->nullable();
+            $table->string('akun')->nullable();
             $table->timestamps();
         });
     }

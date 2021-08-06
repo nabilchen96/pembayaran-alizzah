@@ -35,8 +35,8 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            placeholder="Email" value="{{ old('email') }}">
+                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
+                            placeholder="Email or NIS" value="{{ old('email') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

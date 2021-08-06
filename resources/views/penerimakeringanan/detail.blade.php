@@ -51,13 +51,13 @@ active
                         <input type="hidden" name="id_keringanan" value="{{ $keringanan->id_keringanan }}">
 
                         <?php
-                            $tahun = DB::table('tahun_ajarans')->where('status_aktif', 1)->first();
-                            $tahun = date('m', strtotime($tahun->tgl_mulai));
+                            // $tahun = DB::table('tahun_ajarans')->where('status_aktif', 1)->first();
+                            // $tahun = date('m', strtotime($tahun->tgl_mulai));
                         ?>
-                        @if ( $tahun == date('m') )
+                        {{-- @if ( $tahun == date('m') ) --}}
                         <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tambah</button>
-                        @else
-                        <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambah"><i
+                        {{-- @else --}}
+                        {{-- <a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambah"><i
                                 class="fas fa-plus"></i> Tambah</a>
                         <div class="modal fade" id="tambah" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,8 +81,8 @@ active
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        @endif
+                        </div> --}}
+                        {{-- @endif --}}
 
                         <a href="{{ url('penerimakeringanan-export') }}/{{ $keringanan->id_keringanan }}"
                             class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Export</a>
@@ -97,6 +97,7 @@ active
                             <thead>
                                 <tr>
                                     <th width="20px">No</th>
+                                    <th>Tanggal Daftar</th>
                                     <th>NIS</th>
                                     <th>Nama Siswa</th>
                                     <th>Status Penerima</th>
@@ -109,6 +110,7 @@ active
                             @foreach ($penerimakeringanan as $k => $item)
                             <tr>
                                 <td>{{ $k+1 }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                 <td>{{ $item->nis }}</td>
                                 <td>{{ $item->nama_siswa }}</td>
                                 @if ($item->status_penerima == 1)

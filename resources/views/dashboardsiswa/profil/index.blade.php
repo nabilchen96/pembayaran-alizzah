@@ -19,13 +19,11 @@ menu-open
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <ol class="breadcrumb" style="padding-top: 5px">
-                                <li class="breadcrumb-item">Dashbaord</li>
-                                <li class="breadcrumb-item active">Data Master</li>
-                                <li class="breadcrumb-item active">Edit Siswa</li>
+                                <li class="breadcrumb-item active">Profil Siswa</li>
                             </ol>
                         </div>
                         <div class="col-sm-6">
-                            <h1 class="float-sm-right"><i class="fas fa-cog"></i> Edit Siswa</h1>
+                            <h1 class="float-sm-right"><i class="fas fa-cog"></i> Profil Siswa</h1>
                         </div>
                     </div>
                 </div>
@@ -39,8 +37,6 @@ menu-open
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url('siswa') }}" class="btn btn-sm btn-primary"><i class="fas fa-arrow-left"></i>
-                        Kembali</a>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                             title="Collapse">
@@ -51,26 +47,23 @@ menu-open
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('updatesiswa') }}" method="post">
+                    <form action="{{ url('siswa-updateprofil') }}" method="post">
                         @csrf
-                        <input type="hidden" name="id_siswa" value="{{ $siswa->id_siswa }}">
+                        <input type="hidden" name="id_siswa" value="{{ @$siswa->id_siswa }}">
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">NIS<sup class="text-red">*</sup></label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control @error('nis') is-invalid @enderror"
-                                    placeholder="NIS" name="nis" value="{{ $siswa->nis }}">
-                                @error('nis')
-                                <p class="text-red">{{ $message }}</p>
-                                @enderror
+                                <input type="text" readonly class="form-control @error('nis') is-invalid @enderror"
+                                    placeholder="NIS" value="{{ @$siswa->nis }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-2 col-form-label">Qr Code</label>
                             <div class="col-sm-7">
-                                {!! QrCode::size(100)->generate($siswa->nis); !!}
+                                {!! QrCode::size(100)->generate(@$siswa->nis); !!}
                                 {{-- {!! QrCode::format('png')->merge('https://1.bp.blogspot.com/-5-KgAtUWeFs/YJZfknaACeI/AAAAAAAAGMw/qL0YhsXcGy4iMAwL8sayQ5cYz_8ppt0NwCLcBGAsYHQ/s1500/cara%2Bmembuat%2Bqrcode%2Blaravel%2Bcover.png', .3, true)->generate()  !!} --}}
                                 <br><br>
-                                <a href="{{ url('printqrcodesiswa') }}/{{ $siswa->id_siswa }}"
+                                <a href="{{ url('printqrcodesiswa') }}/{{ @$siswa->id_siswa }}"
                                     class="btn btn-sm btn-success"><i class="fas fa-print"></i> Print QrCode</a>
                             </div>
                         </div>
@@ -78,9 +71,9 @@ menu-open
                             <label class="col-sm-2 col-form-label">Nama Lengkap<sup class="text-red">*</sup></label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control @error('nama_siswa') is-invalid @enderror"
-                                    placeholder="Nama Lengkap" name="nama_siswa" value="{{ $siswa->nama_siswa }}">
+                                    placeholder="Nama Lengkap" name="nama_siswa" value="{{ @$siswa->nama_siswa }}">
                                 @error('nama_siswa')
-                                <p class="text-red">{{ $message }}</p>
+                                <p class="text-red">{{ @$message }}</p>
                                 @enderror
                             </div>
                         </div>
@@ -88,8 +81,8 @@ menu-open
                             <label class="col-sm-2 col-form-label">Jenis Kelamin<sup class="text-red">*</sup></label>
                             <div class="col-sm-7">
                                 <select name="jk" class="form-control">
-                                    <option value="1" {{ $siswa->jk == 1 ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="0" {{ $siswa->jk == 0 ? 'selected' : '' }}>Perempuan</option>
+                                    <option value="1" {{ @$siswa->jk == 1 ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="0" {{ @$siswa->jk == 0 ? 'selected' : '' }}>Perempuan</option>
                                 </select>
                             </div>
                         </div>
@@ -97,36 +90,36 @@ menu-open
                             <label class="col-sm-2 col-form-label">Nomor Telpon/Hp</label>
                             <div class="col-sm-7">
                                 <input type="number" class="form-control" name="no_telp" placeholder="Nomor Telpon/Hp"
-                                    value="{{ $siswa->no_telp }}">
+                                    value="{{ @$siswa->no_telp }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nama Ayah</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" name="nama_ayah" placeholder="Nama Ayah"
-                                    value="{{ $siswa->nama_ayah }}">
+                                    value="{{ @$siswa->nama_ayah }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Nomor Telpon/Hp</label>
                             <div class="col-sm-7">
                                 <input type="number" class="form-control" name="nama_ibu" placeholder="Nama Ibu"
-                                    value="{{ $siswa->nama_ibu }}">
+                                    value="{{ @$siswa->nama_ibu }}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Alamat</label>
                             <div class="col-sm-7">
-                                <textarea name="alamat" class="form-control" rows="10">{{ $siswa->alamat }}</textarea>
+                                <textarea name="alamat" class="form-control" rows="10">{{ @$siswa->alamat }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Status</label>
                             <div class="col-sm-7">
                                 <select name="status" class="form-control">
-                                    <option {{ $siswa->status == 'Aktif' ? 'selected' : '' }} value="Aktif">Aktif
+                                    <option {{ @$siswa->status == 'Aktif' ? 'selected' : '' }} value="Aktif">Aktif
                                     </option>
-                                    <option {{ $siswa->status == 'Tidak Aktif' ? 'selected' : '' }} value="Tidak Aktif">
+                                    <option {{ @$siswa->status == 'Tidak Aktif' ? 'selected' : '' }} value="Tidak Aktif">
                                         Tidak Aktif</option>
                                 </select>
                             </div>
@@ -153,8 +146,8 @@ menu-open
 @push('script')
 <script src="{{ asset('adminlte/plugins/toastr/toastr.min.js') }}"></script>
 <script>
-    @if($message = Session::get('gagal'))
-        toastr.error("{{ $message }}")
+    @if(@$message = Session::get('gagal'))
+        toastr.error("{{ @$message }}")
     @endif
 </script>
 @endpush

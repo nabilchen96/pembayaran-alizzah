@@ -11,6 +11,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use Importer;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -33,7 +35,9 @@ class SiswaController extends Controller
         $request->validate([
             'nis'           => 'required|unique:siswas',
             'nama_siswa'    => 'required',
-            'jk'            => 'required'
+            'jk'            => 'required',
+            'email'         => 'required|unique:siswas',
+            'password'      => 'required'
         ]);
 
         try{
@@ -45,7 +49,17 @@ class SiswaController extends Controller
                 'no_telp'       => $request->input('no_telp'),
                 'nama_ayah'     => $request->input('nama_ayah'),
                 'nama_ibu'      => $request->input('nama_ibu'),
-                'alamat'        => $request->input('alamat')
+                'alamat'        => $request->input('alamat'),
+                'status'        => $request->status,
+                'akun'          => 1
+            ]);
+
+            User::create([
+                'name'          => $request->nama_siswa,
+                'role'          => 'siswa',
+                'siswa'         => $request->siswa,
+                'email'         => $request->nis,
+                'password'      => Hash::make($request->password)
             ]);
 
             //ke halaman siswa dan memberikan pesan sukses
@@ -82,8 +96,23 @@ class SiswaController extends Controller
                 'no_telp'       => $request->input('no_telp'),
                 'nama_ayah'     => $request->input('nama_ayah'),
                 'nama_ibu'      => $request->input('nama_ibu'),
-                'alamat'        => $request->input('alamat')
+                'alamat'        => $request->input('alamat'),
+                'status'        => $request->status,
+                'akun'          => $request->password ? 1 : null
             ]);
+
+            if($request->password){
+                User::updateOrCreate(
+                    ['email' => $request->nis],
+                    [
+                        'name'          => $request->nama_siswa,
+                        'role'          => 'siswa',
+                        'siswa'         => $request->siswa,
+                        'email'         => $request->nis,
+                        'password'      => Hash::make($request->password)
+                    ]
+                );
+            }
 
             //ke halaman siswa dan memberikan pesan sukses
             return redirect('siswa')->with(['sukses' => 'Data Berhasil Diupdate']);

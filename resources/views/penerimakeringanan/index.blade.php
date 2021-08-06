@@ -76,7 +76,9 @@
                                 <td>
                                     <?php 
                                         echo DB::table('penerima_keringanans')
+                                            ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'penerima_keringanans.id_tahun')
                                             ->where('id_keringanan', $item->id_keringanan)
+                                            ->where('tahun_ajarans.status_aktif', '1')
                                             ->where('status_penerima', 1)
                                             ->count();
                                     ?>

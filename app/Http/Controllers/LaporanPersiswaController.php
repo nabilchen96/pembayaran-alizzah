@@ -17,6 +17,7 @@ class LaporanPersiswaController extends Controller
             $pembayaran = DB::table('transaksis')
                     ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'transaksis.id_jenis_pembayaran')
                     ->where('transaksis.id_siswa', $request->id_siswa)
+                    ->orderBy('transaksis.tgl_transaksi', 'DESC')
                     ->get();
 
             $tunggakan = [];
@@ -26,6 +27,7 @@ class LaporanPersiswaController extends Controller
                             ->join('kelas', 'kelas.id_kelas', '=', 'rombels.id_kelas')
                             ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rombels.id_tahun')
                             ->where('siswas.id_siswa', $request->id_siswa)
+                            ->where('tahun_ajarans.status_aktif', '1')
                             ->first();
 
         }else{
@@ -34,6 +36,8 @@ class LaporanPersiswaController extends Controller
             $tunggakan = [];
         }
 
+
+        // dd($data_siswa);
 
         // dd($pembayaran[0]->nama_siswa);
 

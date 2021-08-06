@@ -50,9 +50,12 @@ active
             <div class="card">
                 <div class="card-header">
 
-                    <a id="export" href="@if( @$data_siswa->id_siswa != null) {{ url('laporanpersiswa-export') }}/{{ $data_siswa->id_siswa }}@else # @endif" class="btn btn-sm btn-success">
-                        <i class="fas fa-file-excel"></i> 
-                    Export</a>
+                    {{-- nama_pembayar=&tgl_transaksi=2021-08-05&id_kelas=6&id_siswa=148 --}}
+                    @if ($data_siswa)
+                    <a id="export" href="{{ url('laporanpersiswa-export') }}/{{ $data_siswa->id_siswa }}" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i> Export</a>
+                    <a href="{{ url('tambah-transaksi?nama_pembayar=&tgl_transaksi='.date('Y-m-d').'&id_kelas='.$data_siswa->id_kelas.'&id_siswa='.$data_siswa->id_siswa) }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tambah Transaksi</a>    
+                    @endif
+                    
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"

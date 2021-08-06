@@ -100,7 +100,9 @@ menu-open
                                     <th width="20px">No</th>
                                     <th>NIS</th>
                                     <th>Nama Siswa</th>
+                                    <th>Akun</th>
                                     <th>Jenis Kelamin</th>
+                                    <th>Status</th>
                                     <th width="10px"></th>
                                     <th width="10px"></th>
                                 </tr>
@@ -140,12 +142,16 @@ menu-open
                 }},
                 { data: 'nis',          name: 'nis',        render: function(data){ return nis = data }},
                 { data: 'nama_siswa',   name: 'nama_siswa', render: function(data){ return nama = data }},
+                { data: 'akun', name: 'akun', render: function(data){
+                    return data == null ? '<span class="badge badge-danger text-left">Akun Belum Dibuat</span>' : '<span class="badge badge-success">Akun Sudah Dibuat</span>'
+                }},
                 { data: 'jk',           name: 'jk',         render: function(data){ 
                     jk = data 
                     return data == 1 ? 'Laki-laki' : 'Perempuan' 
                 }},
-                // { data: 'no_telp',      name: 'no_telp',    render: function(data){ return no_telp = data }},
-                // { data: 'nama_ayah',    name: 'nama_ayah',  render: function(data){ return nama_ayah = data }},
+                { data: 'status', name: 'status', render: function(data){
+                    return data == 'Aktif' ? '<span class="badge badge-success">'+data+'</span>' : '<span class="badge badge-danger">'+data+'</span>' 
+                }},
                 { name: 'edit',         render: function(data){ 
                     return `<a href="{{ url('editsiswa') }}/`+(id)+`" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>`
                 }},
