@@ -101,9 +101,9 @@ menu-open
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label">Nomor Telpon/Hp</label>
+                            <label class="col-sm-2 col-form-label">Nama Ibu</label>
                             <div class="col-sm-7">
-                                <input type="number" class="form-control" name="nama_ibu" placeholder="Nama Ibu"
+                                <input type="text" class="form-control" name="nama_ibu" placeholder="Nama Ibu"
                                     value="{{ @$siswa->nama_ibu }}">
                             </div>
                         </div>
