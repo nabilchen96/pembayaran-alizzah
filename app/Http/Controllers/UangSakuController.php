@@ -8,6 +8,7 @@ use App\TransaksiUangSaku;
 use DB;
 // use Maatwebsite\Excel\Facades\Excel;
 use DataTables;
+use auth;
 
 class UangSakuController extends Controller
 {
@@ -52,23 +53,22 @@ class UangSakuController extends Controller
                         
             $pemasukan      = 0;
             $pengeluaran    = 0;
-            $rekap_trx       = [];
+            $data_trx       = [];
 
-                foreach($data as $d){
-                    $d->jenis_transaksi == 'masuk' ? $pemasukan = $d->jumlah + $pemasukan : $pengeluaran = $d->jumlah + $pengeluaran;
-        
-                    $saldo = $pemasukan - $pengeluaran;
-        
-                    $rekap_trx[] = array(
-                        'id_transaksi_uang_saku'    => $d->id_transaksi_uang_saku,
-                        'created_at'                => $d->created_at,
-                        'jenis_transaksi'           => $d->jenis_transaksi,
-                        'jumlah'                    => $d->jumlah,
-                        'keterangan'                => $d->keterangan,
-                        'saldo'                     => $saldo
-                    );
-                }
-            
+            foreach($data as $d){
+                $d->jenis_transaksi == 'masuk' ? $pemasukan = $d->jumlah + $pemasukan : $pengeluaran = $d->jumlah + $pengeluaran;
+    
+                $saldo = $pemasukan - $pengeluaran;
+    
+                $rekap_trx[] = array(
+                    'id_transaksi_uang_saku'    => $d->id_transaksi_uang_saku,
+                    'created_at'                => $d->created_at,
+                    'jenis_transaksi'           => $d->jenis_transaksi,
+                    'jumlah'                    => $d->jumlah,
+                    'keterangan'                => $d->keterangan,
+                    'saldo'                     => $saldo
+                );
+            }
 
             return DataTables::of($rekap_trx)->toJson();
         }
@@ -100,7 +100,8 @@ class UangSakuController extends Controller
             'id_siswa'          => $request->id_siswa,
             'keterangan'        => $request->keterangan,
             'jenis_transaksi'   => $request->jenis_transaksi, 
-            'jumlah'            => $request->jumlah
+            'jumlah'            => $request->jumlah,
+            'id_user'           => auth::user()->id
         ]);
 
         $data = UangSaku::where('id_siswa', $request->id_siswa)->first();

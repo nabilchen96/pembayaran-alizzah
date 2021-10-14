@@ -31,6 +31,7 @@ class UserController extends Controller
 
 
         $siswa = Siswa::find($request->input('id_siswa'));
+        $pass  = $siswa->password;
         $siswa->update([
             'nama_siswa'    => $request->input('nama_siswa'),
             'jk'            => $request->input('jk'),
@@ -38,6 +39,7 @@ class UserController extends Controller
             'nama_ayah'     => $request->input('nama_ayah'),
             'nama_ibu'      => $request->input('nama_ibu'),
             'alamat'        => $request->input('alamat'),
+            'password'      => $request->password ? $request->password : $pass
         ]);
 
         if($request->password){

@@ -46,6 +46,7 @@ menu-open
                             <i class="fas fa-times"></i></button>
                     </div>
                 </div>
+                {{-- {{ dd(date("Y-m-d H:i:s")) }} --}}
                 <div class="card-body">
                     <form action="{{ url('siswa-updateprofil') }}" method="post">
                         @csrf
