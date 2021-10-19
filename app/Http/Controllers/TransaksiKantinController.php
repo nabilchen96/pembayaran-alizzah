@@ -7,6 +7,7 @@ use DB;
 use App\TransaksiUangSaku;
 use App\UangSaku;
 use DataTables;
+use Carbon\Carbon;
 use auth;
 
 class TransaksiKantinController extends Controller
@@ -19,6 +20,7 @@ class TransaksiKantinController extends Controller
                     ->join('users', 'users.id', '=', 'transaksi_uang_sakus.id_user')
                     ->where('transaksi_uang_sakus.jenis_transaksi', 'keluar')
                     ->where('users.role', 'admin-kantin')
+                    ->whereDate('transaksi_uang_sakus.created_at', Carbon::today())
                     ->select(
                         'transaksi_uang_sakus.*',
                         'siswas.id_siswa',

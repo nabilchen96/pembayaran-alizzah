@@ -135,6 +135,10 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        &nbsp; Halaman ini hanya menampilkan transaksi di tanggal {{ date('d-m-y') }}. Klik <a href="{{ url('laporankantin') }}">Halaman Laporan Kantin</a> untuk melihat history transaksi sebelumnya
+                    </div>
                     <div class="table-responsive">
                         <table width="100%" id="table-siswa" class="table table-striped table-bordered">
                             <thead>
