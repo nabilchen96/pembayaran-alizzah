@@ -1,22 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Exports;
 
-use Illuminate\Http\Request;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use DB;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Carbon\Carbon;
-use DataTables;
-use App\Exports\LaporanKantinExport;
-use Maatwebsite\Excel\Facades\Excel;
 
-class LaporanKantinController extends Controller
+class LaporanKantinExport implements FromView
 {
-    public function index(){
+    protected $tgl_awal;
+    protected $tgl_akhir;
 
-        // dd(@$_GET['tgl_akhir']);
+    function __construct($tgl_awal, $tgl_akhir) {
+            $this->tgl_awal         = $tgl_awal;
+            $this->tgl_akhir        = $tgl_akhir;
+    }
 
-        $tgl_awal   = new Carbon(@$_GET['tgl_awal']);
-        $tgl_akhir  = new Carbon(@$_GET['tgl_akhir']);
+    public function view(): view
+    {
+
+        // dd($this->tgl_awal);
+
+        $tgl_awal   = new Carbon($this->tgl_awal);
+        $tgl_akhir  = new Carbon($this->tgl_akhir);
 
         $data = DB::table('transaksi_uang_sakus')
                     ->join('siswas', 'siswas.id_siswa', '=', 'transaksi_uang_sakus.id_siswa')
@@ -32,14 +40,8 @@ class LaporanKantinController extends Controller
                     ->whereBetween('transaksi_uang_sakus.created_at', [$tgl_awal->format('Y-m-d')." 00:00:00", $tgl_akhir->format('Y-m-d')." 23:59:59"])
                     ->get();
 
-        return view('laporankantin.index', [
+        return view('laporankantin.export', [
             'data'  => $data
         ]);
-    }
-
-    public function export($tgl_awal, $tgl_akhir){
-
-        return Excel::download(new LaporanKantinExport($tgl_awal, $tgl_akhir), 'Laporan Kantin.xlsx');
-
     }
 }

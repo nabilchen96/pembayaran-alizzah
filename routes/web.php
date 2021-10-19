@@ -159,6 +159,7 @@ Route::group(['middleware' => ['checkRole:admin-kantin']], function(){
     
     Route::get('laporankantin', 'LaporanKantinController@index');
     Route::get('laporan-kantin-json', 'LaporanKantinController@json');
+    Route::get('laporankantin-export/{tgl_awal}/{tgl_akhir}', 'LaporanKantinController@export');
 });
 
 Route::group(['middleware' => ['checkRole:siswa']], function(){

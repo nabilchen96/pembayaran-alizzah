@@ -121,7 +121,9 @@ active
             serverSide: true,
             ajax: {
                 url: 'laporantunggakan-json',
-               z
+                data: {
+                    'id_jenis_pembayaran' : id
+                }
             },
             columns: [
                 { data: 'id_siswa',     name:'id_siswa',    render: function (data, type, row, meta) {

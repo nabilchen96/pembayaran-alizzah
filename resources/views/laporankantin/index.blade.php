@@ -79,10 +79,12 @@
                                     <i class="fas fa-search"></i> &nbsp;
                                     Tampilkan
                                 </button>&nbsp;
-                                <button class="btn btn-sm btn-success">
-                                    <i class="fas fa-file-excel"></i> &nbsp;
-                                    Export
-                                </button>
+                                @if (@$_GET['tgl_awal'] && @$_GET['tgl_akhir'])                                    
+                                    <a href="{{ url('laporankantin-export') }}/{{ @$_GET['tgl_awal'] }}/{{ @$_GET['tgl_akhir'] }}" class="btn btn-sm btn-success">
+                                        <i class="fas fa-file-excel"></i> &nbsp;
+                                        Export
+                                    </a>
+                                @endif
                             </div>                      
                         </div>
                     </form>

@@ -103,11 +103,6 @@
                                                 <input type="number" name="jumlah" class="form-control" id="maksimal_transaksi"
                                                     min="1">
                                             </div>
-                                            {{-- <div class="form-group">
-                                                <label for="">Keterangan</label>
-                                                <textarea name="keterangan" id="" cols="30" rows="3"
-                                                    class="form-control"></textarea>
-                                            </div> --}}
                                         </div>
                                         <div id="onfail" class="d-none">
                                             <p class="alert alert-danger">Maaf, data yang anda cari tidak ditemukan!</p>
