@@ -17,7 +17,7 @@
             <td>{{ $d->nis }}</td>
             <td>{{ $d->nama_siswa }}</td>
             <td>{{ $d->keterangan }}</td>
-            <td>Rp. {{ number_format($d->jumlah) }}</td>
+            <td>{{ $d->jumlah }}</td>
         </tr>
     @endforeach
     </tbody>
