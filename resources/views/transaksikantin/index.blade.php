@@ -232,7 +232,7 @@
         var batas           = 0
 
         if(jenis_transaksi == 0){
-            saldo >= 7000 ? batas = 7000 : batas = saldo
+            saldo >= 10000 ? batas = 10000 : batas = saldo
         }else{
             batas = saldo
         }

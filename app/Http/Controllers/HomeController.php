@@ -34,6 +34,7 @@ class HomeController extends Controller
 
         //Total Siswa
         $siswa  = DB::table('siswas')
+                    ->where('siswas.status', 'Aktif')
                     ->count();
 
         $pemasukan      = DB::table('rekap_transaksis')

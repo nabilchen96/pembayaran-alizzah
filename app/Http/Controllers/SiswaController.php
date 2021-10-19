@@ -36,7 +36,7 @@ class SiswaController extends Controller
             'nis'           => 'required|unique:siswas',
             'nama_siswa'    => 'required',
             'jk'            => 'required',
-            'email'         => 'required|unique:siswas',
+            // 'email'         => 'required|unique:siswas',
             'password'      => 'required'
         ]);
 
@@ -51,7 +51,8 @@ class SiswaController extends Controller
                 'nama_ibu'      => $request->input('nama_ibu'),
                 'alamat'        => $request->input('alamat'),
                 'status'        => $request->status,
-                'akun'          => 1
+                'akun'          => 1,
+                'password'      => $request->password
             ]);
 
             User::create([
@@ -89,6 +90,7 @@ class SiswaController extends Controller
         try{
 
             $siswa = Siswa::find($request->input('id_siswa'));
+            $pass  = $siswa->password;
             $siswa->update([
                 'nis'           => $request->input('nis'),
                 'nama_siswa'    => $request->input('nama_siswa'),
@@ -98,7 +100,8 @@ class SiswaController extends Controller
                 'nama_ibu'      => $request->input('nama_ibu'),
                 'alamat'        => $request->input('alamat'),
                 'status'        => $request->status,
-                'akun'          => $request->password ? 1 : null
+                'akun'          => $request->password ? 1 : null,
+                'password'      => $request->password ? $request->password : $pass
             ]);
 
             if($request->password){

@@ -7,6 +7,7 @@ use DB;
 use App\TransaksiUangSaku;
 use App\UangSaku;
 use DataTables;
+use auth;
 
 class TransaksiKantinController extends Controller
 {
@@ -58,7 +59,7 @@ class TransaksiKantinController extends Controller
         }
 
         if($request->jenis_transaksi == 0){
-            if($request->jumlah > $data->saldo || $request->jumlah > 7000){
+            if($request->jumlah > $data->saldo || $request->jumlah > 10000){
                 return redirect('transaksikantin')->with(['gagal' => 'jumlah belanja lebih besar dari saldo']);
             }
         }else{
@@ -75,7 +76,7 @@ class TransaksiKantinController extends Controller
 
                     // dd($total);
         
-        if($request->jenis_transaksi == 0 && ($total + $request->jumlah) >= 7000){
+        if($request->jenis_transaksi == 0 && ($total + $request->jumlah) > 10000){
             return redirect('transaksikantin')->with(['gagal' => 'santri sudah melewati batas harian']);
         }
 
@@ -84,7 +85,8 @@ class TransaksiKantinController extends Controller
             'id_siswa'          =>  $request->id_siswa,
             'keterangan'        =>  $request->jenis_transaksi == 0 ? 'jajan harian' : 'kebutuhan khusus',
             'jenis_transaksi'   =>  'keluar',
-            'jumlah'            =>  $request->jumlah
+            'jumlah'            =>  $request->jumlah,
+            'id_user'           =>  auth::user()->id
         ]);
 
         //tabel uang_sakus

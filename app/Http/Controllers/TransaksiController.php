@@ -67,61 +67,26 @@ class TransaksiController extends Controller
     }
 
     public function create(Request $request){
+    
         $kelas      = Kelas::all();
-        $id_kelas   = $request->input('id_kelas');
-        $id_siswa   = $request->input('id_siswa');
 
-        if(empty($id_kelas)){
-            $siswa = [];
-            $pembayaran = [];
-        }else{
-            $siswa = DB::table('rombels')
+        $siswa      = $request->id_kelas ? DB::table('rombels')
                         ->join('siswas', 'siswas.id_siswa', '=', 'rombels.id_siswa')
                         ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rombels.id_tahun')
-                        ->where('id_kelas', $id_kelas)
+                        ->where('id_kelas', $request->id_kelas)
                         ->where('tahun_ajarans.status_aktif', 1)
-                        ->get();
+                        ->get() : [];
 
-            $pembayaran = DB::table('set_pembayaran_kelas')
-                            ->join('kelas', 'kelas.id_kelas', '=', 'set_pembayaran_kelas.id_kelas')
-                            ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'set_pembayaran_kelas.id_jenis_pembayaran')
-                            ->where('set_pembayaran_kelas.id_kelas', $id_kelas)
-                            ->get();
-            
-            if(!empty($id_siswa)){
-                $pembayaran = DB::table('set_pembayaran_kelas')
-                                ->join('kelas', 'kelas.id_kelas', '=', 'set_pembayaran_kelas.id_kelas')
-                                ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'set_pembayaran_kelas.id_jenis_pembayaran')
-                                ->leftJoin('keringanans', 'keringanans.id_jenis_pembayaran', '=', 'jenis_pembayarans.id_jenis_pembayaran')
-                                ->leftJoin('penerima_keringanans', 'penerima_keringanans.id_keringanan', '=', 'keringanans.id_keringanan')
-                                ->where('set_pembayaran_kelas.id_kelas', $id_kelas)
-                                ->select(
-                                    db::raw('max(penerima_keringanans.id_siswa) as id_siswa'),
-                                    db::raw('max(keringanans.keringanan) as keringanan'),
-                                    db::raw('max(jenis_pembayarans.nama_pembayaran) as nama_pembayaran'),
-                                    db::raw('max(kelas.id_kelas) as id_kelas'),
-                                    db::raw('max(set_pembayaran_kelas.biaya) as biaya'),
-                                    db::raw('max(jenis_pembayarans.id_jenis_pembayaran) as id_jenis_pembayaran'),
-                                    db::raw('max(keringanans.besaran_keringanan) as keringanan')
-                                )
-                                ->groupBy('jenis_pembayarans.id_jenis_pembayaran')
-                                ->get();
-            }else{
-                $id_siswa = null;
-            }
-        }
-
-        $nama_pembayar  = $request->input('nama_pembayar');
-        $tgl_transaksi  = $request->input('tgl_transaksi');
+        $pembayaran  = $request->id_kelas ? DB::table('set_pembayaran_kelas')
+                        ->join('kelas', 'kelas.id_kelas', '=', 'set_pembayaran_kelas.id_kelas')
+                        ->join('jenis_pembayarans', 'jenis_pembayarans.id_jenis_pembayaran', '=', 'set_pembayaran_kelas.id_jenis_pembayaran')
+                        ->where('set_pembayaran_kelas.id_kelas', $request->id_kelas)
+                        ->get() : [];
 
         return view('transaksi.create')
             ->with('kelas', $kelas)
             ->with('siswa', $siswa)
-            ->with('id_kelas', $id_kelas)
-            ->with('pembayaran', $pembayaran)
-            ->with('nama_pembayar', $nama_pembayar)
-            ->with('id_siswa', $id_siswa)
-            ->with('tgl_transaksi', $tgl_transaksi);
+            ->with('pembayaran', $pembayaran);
     }
 
     public function store(Request $request){
