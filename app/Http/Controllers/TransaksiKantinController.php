@@ -15,7 +15,9 @@ class TransaksiKantinController extends Controller
         if(request()->ajax()){
             $data = DB::table('transaksi_uang_sakus')
                     ->join('siswas', 'siswas.id_siswa', '=', 'transaksi_uang_sakus.id_siswa')
+                    ->join('users', 'users.id', '=', 'transaksi_uang_sakus.id_user')
                     ->where('transaksi_uang_sakus.jenis_transaksi', 'keluar')
+                    ->where('users.role', 'admin-kantin')
                     ->select(
                         'transaksi_uang_sakus.*',
                         'siswas.id_siswa',

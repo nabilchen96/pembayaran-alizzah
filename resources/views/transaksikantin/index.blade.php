@@ -52,9 +52,6 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    {{-- <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i>
-                        Export</a> --}}
-
                     <button href="#" data-target="#modaltambah" data-toggle="modal" class="btn btn-sm btn-primary"><i
                             class="fas fa-plus"></i>Tambah Transaksi</button>
 

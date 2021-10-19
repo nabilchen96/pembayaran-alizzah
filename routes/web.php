@@ -156,6 +156,9 @@ Route::group(['middleware' => ['checkRole:admin-kantin']], function(){
     Route::get('transaksikantin', 'TransaksiKantinController@index');
     Route::get('carisiswa/{id}', 'TransaksiKantinController@carisiswa');
     Route::post('tambahtransaksikantin', 'TransaksiKantinController@store');
+    
+    Route::get('laporankantin', 'LaporanKantinController@index');
+    Route::get('laporan-kantin-json', 'LaporanKantinController@json');
 });
 
 Route::group(['middleware' => ['checkRole:siswa']], function(){
