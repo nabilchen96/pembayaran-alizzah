@@ -65,7 +65,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{ url('tambahtransaksikantin') }}" method="POST">
+                                <form action="{{ url('tambahtransaksikantin') }}" onSubmit="cek_inputan()" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <video id="reader">
@@ -87,9 +87,9 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Saldo</label>
-                                                <input type="number" class="form-control mt-1" disabled id="saldo">
+                                                <input type="text" class="form-control mt-1" disabled id="saldo">
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="">Jenis Transaksi</label>
                                                 <select name="jenis_transaksi" id="jenis_transaksi" class="form-control"
                                                     onchange="setbatasjajan()" required>
@@ -97,12 +97,21 @@
                                                     <option value="0">Jajan Harian</option>
                                                     <option value="1">Kebutuhan Khusus</option>
                                                 </select>
+                                            </div> --}}
+                                            <div class="form-group">
+                                                <label for="">Jajan Harian</label>
+                                                <input type="number" name="jajan_harian" class="form-control" id="maksimal_jajan_harian">
                                             </div>
                                             <div class="form-group">
+                                                <label for="">Kebutuhan Khusus</label>
+                                                <input type="number" name="kebutuhan_khusus" class="form-control" id="maksimal_kebutuhan_khusus">
+                                            </div>
+
+                                            {{-- <div class="form-group">
                                                 <label for="">Jumlah Transaksi</label>
                                                 <input type="number" name="jumlah" class="form-control" id="maksimal_transaksi"
                                                     min="1">
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div id="onfail" class="d-none">
                                             <p class="alert alert-danger">Maaf, data yang anda cari tidak ditemukan!</p>
@@ -177,12 +186,15 @@
         document.getElementById('onfail').setAttribute('class', 'd-none')
     }
 
+    var batas = 0;
+    var limit_harian = 0;
+
     function isiotomatis(content){
         $.ajax({
             url: "{{ url('carisiswa') }}/"+content
         }).done(function(data){
             obj = JSON.parse(data);
-            // console.log(data)
+            console.log(data)
 
             if(obj == null){
                 document.getElementById('reader').setAttribute('class', 'd-none')
@@ -195,7 +207,17 @@
                 document.getElementById('id_siswa').value = obj.id_siswa
                 document.getElementById('nis').value = obj.nis
                 document.getElementById('kelas').value = obj.kelas+' '+obj.jenjang
-                document.getElementById('saldo').value = obj.saldo == null ? 0 : obj.saldo
+                document.getElementById('saldo').value = obj.saldo == null ? "Rp. 0,00" : "Rp. "+Intl.NumberFormat().format(obj.saldo) 
+
+                //maksimal jajan harian
+                document.getElementById('maksimal_jajan_harian').setAttribute('placeholder', 'batas maksimal adalah Rp. '+Intl.NumberFormat().format(obj.limit_jajan_harian))
+                document.getElementById('maksimal_jajan_harian').setAttribute('max', obj.limit_jajan_harian)
+
+                //maksimal kebutuhan khusus
+                document.getElementById('maksimal_kebutuhan_khusus').setAttribute('placeholder', 'batas maksimal adalah Rp. '+Intl.NumberFormat().format(obj.saldo))
+                document.getElementById('maksimal_kebutuhan_khusus').setAttribute('max', obj.saldo)
+
+                // limit_harian = obj.limit_jajan_harian
 
                 document.getElementById('submit').removeAttribute('class', 'd-none')
             }
@@ -216,7 +238,7 @@
 
     Instascan.Camera.getCameras().then(function (cameras) {
 
-        scanner.start(cameras[1]);
+        scanner.start(cameras[0]);
 
     }).catch(function (e) {
 
@@ -224,21 +246,6 @@
 
     });
 
-    function setbatasjajan(){
-
-        var saldo           = document.getElementById('saldo').value
-        var jenis_transaksi = document.getElementById('jenis_transaksi').value
-        var batas           = 0
-
-        if(jenis_transaksi == 0){
-            saldo >= 10000 ? batas = 10000 : batas = saldo
-        }else{
-            batas = saldo
-        }
-
-        document.getElementById('maksimal_transaksi').setAttribute('placeholder', 'batas maksimal adalah '+batas)
-        document.getElementById('maksimal_transaksi').setAttribute('max', batas)
-    }
 </script>
 <script>
     $('#table-siswa').DataTable({
@@ -257,7 +264,7 @@
             { data: 'keterangan', name: 'keterangan'},
             { data: 'jumlah',        name: 'jumlah',      render: function(data){
                 return "Rp. "+Intl.NumberFormat().format(data)
-                }}
+            }}
         ]
     });
 </script>

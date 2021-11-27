@@ -165,5 +165,8 @@ Route::group(['middleware' => ['checkRole:admin-kantin']], function(){
 Route::group(['middleware' => ['checkRole:siswa']], function(){
     Route::get('/siswa-profil', 'siswa\UserController@edit');
     Route::post('/siswa-updateprofil', 'siswa\UserController@update');
+
+
     Route::get('/siswa-uangsaku', 'siswa\UangSakuController@index');
+    Route::post('/siswa-settinguangsaku', 'siswa\UangSakuController@settinguangsaku');
 });

@@ -53,4 +53,11 @@ class UangSakuController extends Controller
 
         return view('dashboardsiswa.uangsaku.index');
     }
+
+    public function settinguangsaku(Request $request){
+
+        DB::update('update uang_sakus set limit_jajan_harian = '.$request->limit_jajan_harian.' where  id_siswa = '.$request->id_siswa);
+
+        return back()->with(['sukses' => 'Limit Jajan Harian Berhasil Diset!']);
+    }
 }

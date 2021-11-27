@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\TransaksiUangSaku;
 use App\UangSaku;
 use DataTables;
 use Carbon\Carbon;
 use auth;
+use Exception;
 
 class TransaksiKantinController extends Controller
 {
@@ -54,21 +55,31 @@ class TransaksiKantinController extends Controller
 
     public function store(Request $request){
 
+        // dd($request);
+
+        if($request->jajan_harian == NULL && $request->kebutuhan_khusus == NULL){
+            return redirect('transaksikantin')->with(['gagal' => 'gagal!, input jajan harian atau kebutuhan khusus tidak boleh kosong']);
+        }
+
+        if($request->jajan_harian == 0 && $request->kebutuhan_khusus == 0){
+            return redirect('transaksikantin')->with(['gagal' => 'input jajan harian atau kebutuhan khusus']);
+        }
+
         $data = UangSaku::where('id_siswa', $request->id_siswa)->first();
 
         if($data == null){
             return redirect('transaksikantin')->with(['gagal' => 'input uang saku pertama kali terlebih dahulu']);
         }
 
-        if($request->jenis_transaksi == 0){
-            if($request->jumlah > $data->saldo || $request->jumlah > 10000){
+        // if($request->jajan_harian == 0){
+            if($request->jajan_harian > $data->saldo || $request->jajan_harian > $data->limit_jajan_harian){
                 return redirect('transaksikantin')->with(['gagal' => 'jumlah belanja lebih besar dari saldo']);
             }
-        }else{
-            if($request->jumlah > $data->saldo){
+        // }else{
+            if($request->kebutuhan_khusus > $data->saldo){
                 return redirect('transaksikantin')->with(['gagal' => 'jumlah belanja lebih besar dari saldo']);
             }
-        }
+        // }
 
         $total = TransaksiUangSaku::where('id_siswa', $request->id_siswa)
                     ->whereRaw('date(created_at) = CURDATE()')
@@ -78,24 +89,54 @@ class TransaksiKantinController extends Controller
 
                     // dd($total);
         
-        if($request->jenis_transaksi == 0 && ($total + $request->jumlah) > 10000){
+        if($total + $request->jajan_harian > $data->limit_jajan_harian){
             return redirect('transaksikantin')->with(['gagal' => 'santri sudah melewati batas harian']);
         }
 
-        //tabel transaksi_uang_sakus
-        TransaksiUangSaku::create([
-            'id_siswa'          =>  $request->id_siswa,
-            'keterangan'        =>  $request->jenis_transaksi == 0 ? 'jajan harian' : 'kebutuhan khusus',
-            'jenis_transaksi'   =>  'keluar',
-            'jumlah'            =>  $request->jumlah,
-            'id_user'           =>  auth::user()->id
-        ]);
 
-        //tabel uang_sakus
-        $uangsaku = UangSaku::find($data->id_uang_saku);
-        $uangsaku->update([
-            'saldo' => $uangsaku->saldo - $request->jumlah
-        ]);
+        DB::beginTransaction();
+
+        try {
+
+            //tabel transaksi_uang_sakus
+
+            //insert data jajan harian
+            if($request->jajan_harian != 0){
+                TransaksiUangSaku::create([
+                    'id_siswa'          =>  $request->id_siswa,
+                    'keterangan'        =>  'jajan harian',
+                    'jenis_transaksi'   =>  'keluar',
+                    'jumlah'            =>  $request->jajan_harian,
+                    'id_user'           =>  auth::user()->id
+                ]);
+            }
+
+            //insert data kebutuhan khususus
+            if($request->kebutuhan_khusus != 0){
+                TransaksiUangSaku::create([
+                    'id_siswa'          =>  $request->id_siswa,
+                    'keterangan'        =>  'kebutuhan khusus',
+                    'jenis_transaksi'   =>  'keluar',
+                    'jumlah'            =>  $request->kebutuhan_khusus,
+                    'id_user'           =>  auth::user()->id
+                ]);
+            }
+
+            //tabel uang_sakus
+            $uangsaku = UangSaku::find($data->id_uang_saku);
+            $uangsaku->update([
+                'saldo' => $uangsaku->saldo - ($request->kebutuhan_khusus + $request->jajan_harian)
+            ]);
+        
+
+            DB::commit();
+
+        } catch (\Throwable $e) {
+
+            DB::rollback();
+
+            return redirect('transaksikantin')->with(['gagal' => 'data gagal disimpan, pastikan koneksi internet stabil!']);
+        }
 
         return redirect('transaksikantin')->with(['sukses' => 'data berhsil disimpan']);
 
