@@ -101,10 +101,12 @@
                                             <div class="form-group">
                                                 <label for="">Jajan Harian</label>
                                                 <input type="number" name="jajan_harian" class="form-control" id="maksimal_jajan_harian">
+                                                <p style="font-size: 12px;" class="text-info mt-1">Isi dengang angka 0 atau kosongkan jika tidak ada transaksi</p>
                                             </div>
                                             <div class="form-group">
                                                 <label for="">Kebutuhan Khusus</label>
                                                 <input type="number" name="kebutuhan_khusus" class="form-control" id="maksimal_kebutuhan_khusus">
+                                                <p style="font-size: 12px;" class="text-info mt-1">Isi dengang angka 0 atau kosongkan jika tidak ada transaksi</p>
                                             </div>
 
                                             {{-- <div class="form-group">

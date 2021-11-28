@@ -181,6 +181,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     @stack('script')
 
