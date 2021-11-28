@@ -113,8 +113,11 @@
                 </div>
             </div>
             <div class="col-12">
-                <div class="small-box bg-white p-2">
-                    <canvas id="myChart"></canvas>
+
+
+                {{-- for mobile  --}}
+                <div class="d-sm-block small-box bg-white p-2">
+                    <canvas id="myChart" height="400px"></canvas>
                 </div>
             </div>
         </div>
@@ -134,19 +137,19 @@
                                 $query->where('keterangan', '=', 'jajan harian')
                                         ->orWhere('keterangan', '=', 'kebutuhan khusus');
                             })
-                            ->selectRaw("SUM(jumlah) jumlah, DATE_FORMAT(created_at, '%Y %m %e') date")
+                            ->selectRaw("SUM(jumlah) jumlah, DATE_FORMAT(created_at, '%Y-%m-%e') date")
                             ->groupBy('date')
                             ->get();
 
                 foreach($tgl as $item){
-                    echo '"'.$item->date.'",';
+                    echo '"tgl '.date('d', strtotime($item->date)).'",';
                 }
             ?>
         ];
         const data = {
             labels: labels,
             datasets: [{
-                label: 'Pendapatan Seminggu',
+                label: 'Pendapatan Minggu Ini',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: [
