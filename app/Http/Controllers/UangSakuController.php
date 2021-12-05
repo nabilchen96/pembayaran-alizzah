@@ -22,13 +22,12 @@ class UangSakuController extends Controller
 
         if(request()->ajax()){
             $data = DB::table('siswas')
-                    ->leftjoin('transaksi_uang_sakus','transaksi_uang_sakus.id_siswa', '=', 'siswas.id_siswa')
+                    ->leftjoin('uang_sakus','uang_sakus.id_siswa', '=', 'siswas.id_siswa')
                     ->select(
-                        // 'siswas.id_siswa',
-                        // 'siswas.nama_siswa',
-                        // 'siswas.nis',
-                        // 'uang_sakus.saldo',
-                        db::select('sum(transaksi_uang_sakus.jumlah)')
+                        'siswas.id_siswa',
+                        'siswas.nama_siswa',
+                        'siswas.nis',
+                        'uang_sakus.saldo',
 
                     )
                     ->groupBy('siswas.id_siswa')
