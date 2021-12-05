@@ -55,11 +55,6 @@ class TransaksiKantinController extends Controller
                         'kelas.jenjang',
                         'kelas.kelas',
                         'uang_sakus.limit_jajan_harian',
-
-                        DB::raw('
-                            (SELECT SUM(jumlah) 
-                            where siswas.nis = '.$id.' and jenis_transaksi = "keluar") as jumlah_keluar'
-                        )
                     )
                     ->where('tahun_ajarans.status_aktif', "1")
                     ->where('nis', $id)
