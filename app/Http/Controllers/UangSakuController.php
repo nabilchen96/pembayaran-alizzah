@@ -21,33 +21,33 @@ class UangSakuController extends Controller
     {
 
         if(request()->ajax()){
-            $data = DB::table('siswas')
-                    ->leftjoin('uang_sakus','uang_sakus.id_siswa', '=', 'siswas.id_siswa')
-                    ->select(
-                        'siswas.id_siswa',
-                        'siswas.nama_siswa',
-                        'siswas.nis',
-                        'uang_sakus.saldo',
+            // $data = DB::table('siswas')
+            //         ->leftjoin('uang_sakus','uang_sakus.id_siswa', '=', 'siswas.id_siswa')
+            //         ->select(
+            //             'siswas.id_siswa',
+            //             'siswas.nama_siswa',
+            //             'siswas.nis',
+            //             'uang_sakus.saldo',
 
-                    )
-                    ->groupBy('siswas.id_siswa')
-                    ->get();
+            //         )
+            //         ->groupBy('siswas.id_siswa')
+            //         ->get();
 
         // if(request()->ajax()){
-        //     $data = DB::select(
-        //         '
-        //             select siswas.id_siswa, siswas.nama_siswa, siswas.nis, 
-        //             (select 
-        //                 sum(transaksi_uang_sakus.jumlah) 
-        //                 from transaksi_uang_sakus where transaksi_uang_sakus.id_siswa = siswas.id_siswa and transaksi_uang_sakus.jenis_transaksi = "keluar") as jumlah_keluar,
-        //             (select 
-        //                 sum(transaksi_uang_sakus.jumlah)
-        //                 from transaksi_uang_sakus where transaksi_uang_sakus.id_siswa = siswas.id_siswa and transaksi_uang_sakus.jenis_transaksi = "masuk") as jumlah_masuk
-        //             from siswas
-        //             left join transaksi_uang_sakus on transaksi_uang_sakus.id_siswa = siswas.id_siswa
-        //             group by siswas.id_siswa
-        //         '
-        //     );
+            $data = DB::select(
+                '
+                    select siswas.id_siswa, siswas.nama_siswa, siswas.nis, 
+                    (select 
+                        sum(transaksi_uang_sakus.jumlah) 
+                        from transaksi_uang_sakus where transaksi_uang_sakus.id_siswa = siswas.id_siswa and transaksi_uang_sakus.jenis_transaksi = "keluar") as jumlah_keluar,
+                    (select 
+                        sum(transaksi_uang_sakus.jumlah)
+                        from transaksi_uang_sakus where transaksi_uang_sakus.id_siswa = siswas.id_siswa and transaksi_uang_sakus.jenis_transaksi = "masuk") as jumlah_masuk
+                    from siswas
+                    left join transaksi_uang_sakus on transaksi_uang_sakus.id_siswa = siswas.id_siswa
+                    group by siswas.id_siswa
+                '
+            );
 
             return DataTables::of($data)->toJson();
         }

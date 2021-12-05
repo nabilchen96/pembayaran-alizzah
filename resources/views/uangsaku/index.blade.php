@@ -99,10 +99,11 @@ menu-open
                 }},
                 { data: 'nis',          name: 'nis',        render: function(data){ return nis = data }},
                 { data: 'nama_siswa',   name: 'nama_siswa', render: function(data){ return nama = data }},
-                { data: 'saldo',        name: 'saldo',      render: function(data){
-                    return "Rp. "+Intl.NumberFormat().format(data)
-                 }},
-
+                {
+                    data: null, name: 'saldo', render: function (data, type, row, meta) {
+                        return "Rp. "+Intl.NumberFormat().format(row.jumlah_masuk - row.jumlah_keluar)
+                    }
+                },
                 { name: 'edit',         render: function(data){ 
                     return `<a href="{{ url('transaksiuangsaku') }}/`+(id)+`" class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>`
                 }},
