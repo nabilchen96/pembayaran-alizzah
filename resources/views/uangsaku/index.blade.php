@@ -41,9 +41,6 @@ menu-open
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h1 class="alert alert-warning">
-                Maaf, Halaman ini sedang diperbaiki!
-            </h1>
             <div class="card">
                 <div class="card-header">
                     {{-- <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i>
@@ -102,6 +99,9 @@ menu-open
                 }},
                 { data: 'nis',          name: 'nis',        render: function(data){ return nis = data }},
                 { data: 'nama_siswa',   name: 'nama_siswa', render: function(data){ return nama = data }},
+                // { data: 'saldo',        name: 'saldo',      render: function(data){
+                //     return "Rp. "+Intl.NumberFormat().format(data)
+                //  }},
                 {
                     data: null, name: 'saldo', render: function (data, type, row, meta) {
                         return "Rp. "+Intl.NumberFormat().format(row.jumlah_masuk - row.jumlah_keluar)

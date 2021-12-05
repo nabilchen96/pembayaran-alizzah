@@ -20,20 +20,21 @@ class UangSakuController extends Controller
     public function index()
     {
 
-        if(request()->ajax()){
+        // if(request()->ajax()){
             // $data = DB::table('siswas')
-            //         ->leftjoin('uang_sakus','uang_sakus.id_siswa', '=', 'siswas.id_siswa')
+            //         ->leftjoin('transaksi_uang_sakus','transaksi_uang_sakus.id_siswa', '=', 'siswas.id_siswa')
             //         ->select(
-            //             'siswas.id_siswa',
-            //             'siswas.nama_siswa',
-            //             'siswas.nis',
-            //             'uang_sakus.saldo',
+            //             // 'siswas.id_siswa',
+            //             // 'siswas.nama_siswa',
+            //             // 'siswas.nis',
+            //             // 'uang_sakus.saldo',
+            //             db::select('sum(transaksi_uang_sakus.jumlah)')
 
             //         )
             //         ->groupBy('siswas.id_siswa')
             //         ->get();
 
-        // if(request()->ajax()){
+        if(request()->ajax()){
             $data = DB::select(
                 '
                     select siswas.id_siswa, siswas.nama_siswa, siswas.nis, 
@@ -66,12 +67,13 @@ class UangSakuController extends Controller
                             'siswas.nis',
                             'transaksi_uang_sakus.*'
                         )
-                        ->groupBy('transaksi_uang_sakus.created_at')
+                        // ->groupBy('transaksi_uang_sakus.created_at')
                         ->get();
                         
             $pemasukan      = 0;
             $pengeluaran    = 0;
             $data_trx       = [];
+            $rekap_trx      = array();
 
             foreach($data as $d){
                 $d->jenis_transaksi == 'masuk' ? $pemasukan = $d->jumlah + $pemasukan : $pengeluaran = $d->jumlah + $pengeluaran;

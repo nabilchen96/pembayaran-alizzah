@@ -41,13 +41,42 @@ class TransaksiKantinController extends Controller
     public function carisiswa($id){
 
         if(request()->ajax()){
-            $data = DB::table('siswas')
+            $data = [
+                'data1' => DB::table('siswas')
                     ->join('rombels', 'rombels.id_siswa', '=', 'siswas.id_siswa')
                     ->join('tahun_ajarans', 'tahun_ajarans.id_tahun', '=', 'rombels.id_tahun')
                     ->join('kelas', 'kelas.id_kelas', '=', 'rombels.id_kelas')
                     ->leftjoin('uang_sakus', 'uang_sakus.id_siswa', '=', 'siswas.id_siswa')
+                    ->leftjoin('transaksi_uang_sakus', 'transaksi_uang_sakus.id_siswa', '=', 'siswas.id_siswa')
+                    ->select(
+                        'siswas.nama_siswa',
+                        'siswas.id_siswa',
+                        'siswas.nis',
+                        'kelas.jenjang',
+                        'kelas.kelas',
+                        'uang_sakus.limit_jajan_harian',
+
+                        DB::raw('
+                            (SELECT SUM(jumlah) 
+                            where siswas.nis = '.$id.' and jenis_transaksi = "keluar") as jumlah_keluar'
+                        )
+                    )
                     ->where('tahun_ajarans.status_aktif', "1")
-                    ->where('nis', $id)->first();
+                    ->where('nis', $id)
+                    ->first(),
+                'jumlah_masuk' => DB::table('transaksi_uang_sakus')
+                        ->join('siswas', 'siswas.id_siswa', '=', 'transaksi_uang_sakus.id_siswa')
+                        ->where('transaksi_uang_sakus.jenis_transaksi', 'masuk')
+                        ->where('siswas.nis', $id)
+                        ->sum('transaksi_uang_sakus.jumlah'),
+
+                'jumlah_keluar' => DB::table('transaksi_uang_sakus')
+                        ->join('siswas', 'siswas.id_siswa', '=', 'transaksi_uang_sakus.id_siswa')
+                        ->where('transaksi_uang_sakus.jenis_transaksi', 'keluar')
+                        ->where('siswas.nis', $id)
+                        ->sum('transaksi_uang_sakus.jumlah')
+            ];
+            
 
             echo json_encode($data);
         }
@@ -67,16 +96,28 @@ class TransaksiKantinController extends Controller
 
         $data = UangSaku::where('id_siswa', $request->id_siswa)->first();
 
+        $jumlah_masuk = DB::table('transaksi_uang_sakus')
+            ->where('jenis_transaksi', 'masuk')
+            ->where('id_siswa', $request->id_siswa)
+            ->sum('jumlah');
+
+        $jumlah_keluar = DB::table('transaksi_uang_sakus')
+            ->where('jenis_transaksi', 'keluar')
+            ->where('id_siswa', 'keluar')
+            ->sum('jumlah');
+
+        $saldo = $jumlah_masuk - $jumlah_keluar;
+
         if($data == null){
             return redirect('transaksikantin')->with(['gagal' => 'input uang saku pertama kali terlebih dahulu']);
         }
 
         // if($request->jajan_harian == 0){
-            if($request->jajan_harian > $data->saldo || $request->jajan_harian > $data->limit_jajan_harian){
+            if($request->jajan_harian > $saldo || $request->jajan_harian > $data->limit_jajan_harian){
                 return redirect('transaksikantin')->with(['gagal' => 'jumlah belanja lebih besar dari saldo']);
             }
         // }else{
-            if($request->kebutuhan_khusus > $data->saldo){
+            if($request->kebutuhan_khusus > $saldo){
                 return redirect('transaksikantin')->with(['gagal' => 'jumlah belanja lebih besar dari saldo']);
             }
         // }

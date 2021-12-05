@@ -205,19 +205,19 @@
                 document.getElementById('reader').setAttribute('class', 'd-none')
                 document.getElementById('onsukses').removeAttribute('class', 'd-none')
 
-                document.getElementById('nama_siswa').value = obj.nama_siswa
-                document.getElementById('id_siswa').value = obj.id_siswa
-                document.getElementById('nis').value = obj.nis
-                document.getElementById('kelas').value = obj.kelas+' '+obj.jenjang
-                document.getElementById('saldo').value = obj.saldo == null ? "Rp. 0,00" : "Rp. "+Intl.NumberFormat().format(obj.saldo) 
+                document.getElementById('nama_siswa').value = obj.data1.nama_siswa
+                document.getElementById('id_siswa').value = obj.data1.id_siswa
+                document.getElementById('nis').value = obj.data1.nis
+                document.getElementById('kelas').value = obj.data1.kelas+' '+obj.data1.jenjang
+                document.getElementById('saldo').value = "Rp. "+Intl.NumberFormat().format(obj.jumlah_masuk - obj.jumlah_keluar) 
 
                 //maksimal jajan harian
-                document.getElementById('maksimal_jajan_harian').setAttribute('placeholder', 'batas maksimal adalah Rp. '+Intl.NumberFormat().format(obj.limit_jajan_harian))
-                document.getElementById('maksimal_jajan_harian').setAttribute('max', obj.limit_jajan_harian)
+                document.getElementById('maksimal_jajan_harian').setAttribute('placeholder', 'batas maksimal adalah Rp. '+Intl.NumberFormat().format(obj.data1.limit_jajan_harian))
+                document.getElementById('maksimal_jajan_harian').setAttribute('max', obj.data1.limit_jajan_harian)
 
                 //maksimal kebutuhan khusus
-                document.getElementById('maksimal_kebutuhan_khusus').setAttribute('placeholder', 'batas maksimal adalah Rp. '+Intl.NumberFormat().format(obj.saldo))
-                document.getElementById('maksimal_kebutuhan_khusus').setAttribute('max', obj.saldo)
+                document.getElementById('maksimal_kebutuhan_khusus').setAttribute('placeholder', 'batas maksimal adalah Rp. '+Intl.NumberFormat().format(obj.jumlah_masuk - obj.jumlah_keluar))
+                document.getElementById('maksimal_kebutuhan_khusus').setAttribute('max', obj.jumlah_masuk - obj.jumlah_keluar)
 
                 // limit_harian = obj.limit_jajan_harian
 
