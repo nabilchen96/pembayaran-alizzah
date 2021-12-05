@@ -98,7 +98,7 @@ class TransaksiKantinController extends Controller
 
         $jumlah_keluar = DB::table('transaksi_uang_sakus')
             ->where('jenis_transaksi', 'keluar')
-            ->where('id_siswa', 'keluar')
+            ->where('id_siswa', $request->id_siswa)
             ->sum('jumlah');
 
         $saldo = $jumlah_masuk - $jumlah_keluar;
