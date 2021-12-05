@@ -41,6 +41,9 @@ menu-open
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <h1 class="alert alert-warning">
+                Maaf, Halaman ini sedang diperbaiki!
+            </h1>
             <div class="card">
                 <div class="card-header">
                     {{-- <a href="{{ url('siswa-export') }}" class="btn btn-sm btn-success"><i class="fas fa-file-excel"></i>
