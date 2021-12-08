@@ -25,7 +25,7 @@ class UangSakuController extends Controller
                             'siswas.nis',
                             'transaksi_uang_sakus.*'
                         )
-                        ->groupBy('transaksi_uang_sakus.created_at')
+                        // ->groupBy('transaksi_uang_sakus.created_at')
                         ->get();
                         
             $pemasukan      = 0;
