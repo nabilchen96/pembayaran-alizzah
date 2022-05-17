@@ -283,7 +283,7 @@
     
                         if (camera == 0) {
                             camera = 1
-                        } else {
+                        } else if(camera == 1) {
                             camera = 0
                         }
     
